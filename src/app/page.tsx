@@ -16,9 +16,7 @@ import Portfolio from "./components/Portfolio/Portfolio";
 import FloatingControls from "./components/FloatingControls";
 import Footer from "./components/Footer";
 
-const ContainedParticles = lazy(
-  () => import("./components/containedParticles")
-);
+const ContainedParticles = lazy(() => import("./components/containedParticles"));
 
 const Background = styled("div")(({ theme }) => ({
   position: "absolute",

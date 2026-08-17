@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { useAppSelector } from "util/hooks";
+import { useAppSelector } from "../../util/hooks";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import Stack from "@mui/material/Stack";
@@ -29,11 +29,7 @@ export default function Header() {
           pb: { xs: 3, sm: 5 },
         }}
       >
-        <Stack
-          spacing={2}
-          useFlexGap
-          sx={{ width: { xs: "100%", sm: "80%" }, zIndex: 99 }}
-        >
+        <Stack spacing={2} useFlexGap sx={{ width: { xs: "100%", sm: "80%" } }}>
           <Typography
             variant="h1"
             textAlign="center"
@@ -42,9 +38,7 @@ export default function Header() {
               mt: 16,
               mb: 8,
               color: (theme) =>
-                theme.palette.mode === "light"
-                  ? "primary.main"
-                  : "primary.light",
+                theme.palette.mode === "light" ? "primary.main" : "primary.light",
             }}
           >
             Hello
@@ -62,8 +56,7 @@ export default function Header() {
             }}
           >
             I&apos;m Victoria. <br />I synthesize ui/ux design and development.
-            <br /> I enjoy problem-solving and building ideas into digital
-            products.
+            <br /> I enjoy problem-solving and building ideas into digital products.
           </Typography>
           <WorkProcess />
         </Stack>

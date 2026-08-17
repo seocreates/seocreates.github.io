@@ -48,7 +48,7 @@ export default function Dashboard() {
               With shared code, the service-product teams are responsible for
               developing supplemental components that provide direct access to
               their capabilities. Without standardization, this implementation
-              process inevitability creates disjointed components that primarily
+              process inevitably creates disjointed components that primarily
               affect the long-term user experience in an operational
               environment.
             </Typography>
@@ -114,7 +114,7 @@ export default function Dashboard() {
             fontStyle={"italic"}
             color="text.secondary"
           >
-            Reposition on Resized Viewpoint with Side Panel
+            Reposition on Resized Viewport with Side Panel
           </Typography>
         </Grid>
       </Grid>
@@ -125,9 +125,10 @@ export default function Dashboard() {
             First Iteration
           </Typography>
           <Typography variant="body1" color="text.primary">
-            The first proof of concept was to facilitate preliminary discussions
-            on validating the solution of a fixed height and custom reorder. A
-            modular grid layout arranges items with consistent columns and rows
+            The first proof of concept aimed to facilitate preliminary
+            discussions around a proposed solution: a fixed height with custom
+            reordering. A modular grid layout arranges items with consistent
+            columns and rows
             to maintain a uniform aesthetic across all dashboards reflecting
             different services. The new design will allow users to easily scan
             items, and remember the order and location of high-interest content.
@@ -135,13 +136,12 @@ export default function Dashboard() {
             array of items according to individual specifications.
           </Typography>
           <Typography variant="body1" color="text.primary">
-            The main disadvantage is the dynamic content length. In a fixed
-            height, less content will leave a white area and the wasted space
-            could be repurposed for more content on a dashboard viewpoint. If
-            the content extends, the truncated information will obscure vital
-            data that may impede operational performance. This first iteration
-            opened many concerns that were remedied with the original masonry
-            layout.
+            The main disadvantage is the dynamic content length. With a fixed
+            height, sparse content leaves wasted white space, while content
+            that exceeds the fixed height gets truncated, obscuring vital data
+            and potentially impeding operational performance. This first
+            iteration reintroduced concerns that the original masonry layout
+            had already solved.
           </Typography>
         </Stack>
       </ReadableStack>
@@ -188,7 +188,7 @@ export default function Dashboard() {
             fontStyle={"italic"}
             color="text.secondary"
           >
-            Grid Wrapping on Resized Viewpoint with Side Panel
+            Grid Wrapping on Resized Viewport with Side Panel
           </Typography>
         </Grid>
         <Grid item xs={12} sm={12} md={4} id="first-dashboard-prototype">
@@ -272,7 +272,7 @@ export default function Dashboard() {
           The 2 by 2 arrays are flexible containers in width and consistent in
           height. The grid layout and the items within the 2 by 2 array should
           flow from left to right and top to bottom. Designed around the common
-          screen resolution of 1920 x 1080, the dashboard viewpoint should
+          screen resolution of 1920 x 1080, the dashboard viewport should
           maintain full visibility of two rows and a glimpse of the row
           underneath to indicate further content.
         </Typography>

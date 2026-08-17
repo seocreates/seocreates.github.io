@@ -4,7 +4,7 @@ import Box from "@mui/material/Box";
 import { useThemeMode } from "util/hooks/themeContext";
 import { ToggleButton, ToggleButtonGroup } from "@mui/material";
 import SettingsBrightness from "@mui/icons-material/SettingsBrightness";
-import GridViewIcon from "@mui/icons-material/GridView";
+import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import VerticalAlignTop from "@mui/icons-material/VerticalAlignTop";
 
 function FloatingControls() {
@@ -27,8 +27,9 @@ function FloatingControls() {
       component="nav"
       aria-label="Page controls"
       sx={{
-        right: 30,
-        top: "50%",
+        right: { xs: 16, sm: 30 },
+        bottom: { xs: 16, sm: "auto" },
+        top: { xs: "auto", sm: "50%" },
         position: "fixed",
         display: "flex",
         flexDirection: "column",
@@ -51,14 +52,14 @@ function FloatingControls() {
         </ToggleButton>
         <ToggleButton
           value
-          onClick={() => scrollTo("portfolio-list")}
-          aria-label="view portfolio"
+          onClick={() => scrollTo("header-section")}
+          aria-label="view about"
         >
-          <GridViewIcon sx={{ fontSize: "24px" }} />
+          <PersonOutlineIcon sx={{ fontSize: "24px" }} />
         </ToggleButton>
         <ToggleButton
           value
-          onClick={() => scrollTo("header-section")}
+          onClick={() => scrollTo("portfolio-list")}
           aria-label="scroll to top"
         >
           <VerticalAlignTop sx={{ fontSize: "24px" }} />

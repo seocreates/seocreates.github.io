@@ -16,7 +16,8 @@ interface ParticlesProps {
 const Container = styled("div")(({ theme }) => ({
   position: "absolute",
   inset: "0px",
-  zIndex: 99,
+  zIndex: -1,
+  pointerEvents: "none",
   ".hide": {
     opacity: 0,
   },

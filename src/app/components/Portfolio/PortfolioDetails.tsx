@@ -16,10 +16,21 @@ export default function PortfolioDetails({
       <Container
         id="portfolio-details"
         sx={{
-          boxShadow: 1,
+          position: "relative",
+          borderRadius: 1,
+          border: (theme) =>
+            `1px solid ${
+              theme.palette.mode === "light"
+                ? "rgba(9, 14, 16, 0.08)"
+                : "rgba(255, 255, 255, 0.08)"
+            }`,
           backgroundColor: (theme) => theme.palette.background.paper,
+          boxShadow: (theme) =>
+            theme.palette.mode === "light"
+              ? "0 1px 2px rgba(9, 14, 16, 0.06), 0 12px 32px -16px rgba(9, 14, 16, 0.16)"
+              : "0 1px 2px rgba(0, 0, 0, 0.4), 0 12px 32px -16px rgba(0, 0, 0, 0.6)",
           my: { xs: 4, sm: 6 },
-          zIndex: 999,
+          overflow: "hidden",
         }}
       >
         <Box
@@ -27,12 +38,8 @@ export default function PortfolioDetails({
           id="portfolio-section"
           sx={{
             width: "100%",
-            display: "flex",
             textAlign: "left",
-            flexDirection: { xs: "column", md: "row" },
-            alignItems: { md: "center" },
-            p: 1.5,
-            gap: 1,
+            p: { xs: 3, sm: 4, md: 6 },
           }}
         >
           {index === 1 && <Dashboard />}

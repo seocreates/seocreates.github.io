@@ -32,12 +32,12 @@ export default function RemoteDevice() {
             Background
           </Typography>
           <Typography variant="body1" color="text.primary">
-            Our service product developers require a holistic platform to test
+            Our service-product developers require a holistic platform to test
             their products on different operating systems and device variants
-            prior to deployment. As service products increase in complexity and
+            prior to deployment. As service-products increase in complexity and
             market devices continue to release OS updates, it is crucial to
-            maintain a viable production targeted devices, monitor and optimize
-            performance, and remediate code vulnerabilities.
+            maintain a viable set of production-targeted devices, monitor and
+            optimize performance, and remediate code vulnerabilities.
           </Typography>
           <Typography variant="body1" color="text.primary">
             The remote device platform serves our internal product developers
@@ -56,12 +56,12 @@ export default function RemoteDevice() {
             all product teams and operating systems.
           </Typography>
           <Typography variant="body1" color="text.primary">
-            Communicated product visions with all stakeholders to ensure the
+            Communicated the product vision to all stakeholders to ensure the
             platform is sustainable for continuous deployment in an air-gapped
             environment.
           </Typography>
           <Typography variant="body1" color="text.primary">
-            Created research synthesis to prioritize feature requests for our
+            Synthesized user research to prioritize feature requests for our
             MVP and designed high-fidelity prototypes to communicate with the
             team.
           </Typography>

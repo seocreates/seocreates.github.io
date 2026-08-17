@@ -44,7 +44,6 @@ export default function WorkProcess() {
       columns={5}
       id="work-process"
       sx={{
-        zIndex: -999,
         display: {
           xs: "auto",
         },
