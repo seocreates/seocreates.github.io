@@ -35,7 +35,7 @@ export default function PortfolioDetails({
       >
         <Box
           component="div"
-          id="portfolio-section"
+          id="portfolio-details-content"
           sx={{
             width: "100%",
             textAlign: "left",
