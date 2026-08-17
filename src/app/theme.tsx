@@ -114,7 +114,7 @@ const customTheme = (mode: PaletteMode) => ({
       }),
     },
     background: {
-      default: gray[100],
+      default: "#f8f8f8",
       paper: "#ffffff",
       ...(mode === "dark" && { default: gray[900], paper: gray[800] }),
     },
