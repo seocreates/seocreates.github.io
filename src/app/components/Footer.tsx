@@ -30,6 +30,7 @@ function MadeWith() {
 export default function Footer() {
   return (
     <Container
+      component="footer"
       sx={{
         textAlign: { sm: "center", md: "left" },
         display: "flex",

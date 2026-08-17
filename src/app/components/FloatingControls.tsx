@@ -24,6 +24,8 @@ function FloatingControls() {
 
   return (
     <Box
+      component="nav"
+      aria-label="Page controls"
       sx={{
         right: 30,
         top: "50%",
@@ -35,14 +37,14 @@ function FloatingControls() {
       }}
     >
       <ToggleButtonGroup
-        aria-label="FloatingControls"
+        aria-label="Quick actions"
         orientation="vertical"
         color="primary"
         sx={{ backgroundColor: "background.paper", boxShadow: 2 }}
       >
         <ToggleButton
           value
-          onClick={() => handleThemeMode(themeMode)}
+          onClick={() => handleThemeMode()}
           aria-label="toggle theme mode"
         >
           <SettingsBrightness sx={{ fontSize: "24px" }} />

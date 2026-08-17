@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "eslint ."
   },
   "dependencies": {
     "@emotion/cache": "^11.11.0",
@@ -28,8 +28,13 @@
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
-    "eslint": "^8",
+    "eslint": "^9",
     "eslint-config-next": "^16.3.1",
     "typescript": "^5"
+  },
+  "overrides": {
+    "@mui/material-nextjs": {
+      "next": "^16.3.1"
+    }
   }
 }

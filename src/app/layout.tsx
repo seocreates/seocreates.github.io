@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import StoreProvider from "./storeProvider";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
 import Analytics from "./components/analytics";
+import { ibmPlexSans } from "./fonts";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -17,11 +18,11 @@ export default function RootLayout({
 }>) {
   return (
     <StoreProvider>
-      <html lang="en">
+      <html lang="en" className={ibmPlexSans.variable}>
         <head>
           <Analytics />
         </head>
-        <body>
+        <body className={ibmPlexSans.className}>
           <AppRouterCacheProvider>{children}</AppRouterCacheProvider>
         </body>
       </html>

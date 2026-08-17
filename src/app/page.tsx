@@ -6,6 +6,7 @@ import { lazy } from "react";
 import ThemeContextProvider from "../util/hooks/themeContext";
 import { useThemeMode } from "../util/hooks/themeContext";
 import { styled } from "@mui/system";
+import Box from "@mui/material/Box";
 import { CssBaseline } from "@mui/material";
 import { PaletteMode } from "@mui/material";
 import { ThemeProvider } from "@mui/material";
@@ -44,10 +45,12 @@ function MainContent() {
       <CssBaseline />
       <Background>
         <ContainedParticles />
-        <div id="header-section" />
-        <Header />
-        <div id="portfolio-list" />
-        <Portfolio />
+        <Box component="main">
+          <div id="header-section" />
+          <Header />
+          <div id="portfolio-list" />
+          <Portfolio />
+        </Box>
         <FloatingControls />
         <Footer />
       </Background>
