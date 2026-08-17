@@ -3,7 +3,7 @@
 import type {} from "@mui/material/themeCssVarsAugmentation";
 import { ThemeOptions, alpha, createTheme } from "@mui/material/styles";
 import { PaletteMode } from "@mui/material";
-import { ibmPlexSans } from "./fonts";
+import { activeFont } from "./fonts";
 
 declare module "@mui/material/styles/createPalette" {
   interface ColorRange {
@@ -134,7 +134,7 @@ const customTheme = (mode: PaletteMode) => ({
     },
   },
   typography: {
-    fontFamily: `${ibmPlexSans.style.fontFamily}, sans-serif`,
+    fontFamily: `${activeFont.style.fontFamily}, sans-serif`,
     fontsize: 14,
     h1: {
       fontSize: 120,
@@ -162,7 +162,7 @@ const customTheme = (mode: PaletteMode) => ({
     },
     h6: {
       fontSize: 18,
-      textTransform: "uppercase",
+      textTransform: "uppercase" as const,
       letterSpacing: 0.5,
       fontWeight: 500,
     },
