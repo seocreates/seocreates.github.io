@@ -8,8 +8,8 @@ function Copyright() {
   return (
     <Typography variant="body2" color="text.secondary" mt={1}>
       {"Copyright © "}
-      <MuiLink color="inherit" href="https://seomadness.github.io">
-        seomadness.github.io
+      <MuiLink color="inherit" href="https://seocreates.github.io/">
+        seocreates.github.io
       </MuiLink>{" "}
       {new Date().getFullYear()}
     </Typography>
