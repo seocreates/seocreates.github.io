@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "eslint ."
   },
   "dependencies": {
     "@emotion/cache": "^11.11.0",
@@ -16,9 +16,9 @@
     "@mui/icons-material": "^5.15.10",
     "@mui/material": "^5.15.10",
     "@mui/material-nextjs": "^5.15.9",
-    "@next/third-parties": "^14.1.0",
+    "@next/third-parties": "^16.3.1",
     "@reduxjs/toolkit": "^2.2.1",
-    "next": "^14.1.0",
+    "next": "^16.3.1",
     "react": "^18",
     "react-dom": "^18",
     "react-redux": "^9.1.0"
@@ -28,8 +28,13 @@
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
-    "eslint": "^8",
-    "eslint-config-next": "14.1.0",
+    "eslint": "^9",
+    "eslint-config-next": "^16.3.1",
     "typescript": "^5"
+  },
+  "overrides": {
+    "@mui/material-nextjs": {
+      "next": "^16.3.1"
+    }
   }
 }

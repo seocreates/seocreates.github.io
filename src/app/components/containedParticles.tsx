@@ -81,24 +81,10 @@ function ContainedParticles({
   const circles = useRef<any[]>([]);
   const canvasSize = useRef<{ w: number; h: number }>({ w: 0, h: 0 });
   const dpr = typeof window !== "undefined" ? window.devicePixelRatio : 1;
-
-  useEffect(() => {
-    if (canvasRef.current) {
-      context.current = canvasRef.current.getContext("2d");
-    }
-
-    initCanvas();
-    animate();
-    window.addEventListener("resize", initCanvas);
-
-    return () => {
-      window.removeEventListener("resize", initCanvas);
-    };
-  }, []);
-
-  useEffect(() => {
-    initCanvas();
-  }, [refresh]);
+  const prefersReducedMotion = useRef(
+    typeof window !== "undefined" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+  );
 
   const initCanvas = () => {
     resizeCanvas();
@@ -258,8 +244,28 @@ function ContainedParticles({
         );
       }
     });
-    window.requestAnimationFrame(animate);
+    if (!prefersReducedMotion.current) {
+      window.requestAnimationFrame(animate);
+    }
   };
+
+  useEffect(() => {
+    if (canvasRef.current) {
+      context.current = canvasRef.current.getContext("2d");
+    }
+
+    initCanvas();
+    animate();
+    window.addEventListener("resize", initCanvas);
+
+    return () => {
+      window.removeEventListener("resize", initCanvas);
+    };
+  }, []);
+
+  useEffect(() => {
+    initCanvas();
+  }, [refresh]);
 
   useEffect(() => {
     animate();
