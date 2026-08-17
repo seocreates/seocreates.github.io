@@ -260,7 +260,7 @@ export default function Portfolio() {
                         variant="h5"
                         component="p"
                         sx={{
-                          fontWeight: 600,
+                          fontWeight: 300,
                           textTransform: "capitalize",
                           textShadow: "0 2px 12px rgba(0,0,0,0.35)",
                         }}

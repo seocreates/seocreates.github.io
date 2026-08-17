@@ -161,8 +161,10 @@ const customTheme = (mode: PaletteMode) => ({
       fontWeight: 300,
     },
     h6: {
-      fontSize: 20,
-      fontWeight: 800,
+      fontSize: 18,
+      textTransform: "uppercase",
+      letterSpacing: 0.5,
+      fontWeight: 500,
     },
     subtitle1: {
       fontWeight: 300,
