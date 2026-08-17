@@ -1,4 +1,4 @@
-Open [seomadness.github.io](seomadness.github.io)
+seocreates.github.io
 
 ## Getting Started
 
