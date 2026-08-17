@@ -1,0 +1,72 @@
+"use client";
+
+import Box from "@mui/material/Box";
+import { useThemeMode } from "util/hooks/themeContext";
+import { ToggleButton, ToggleButtonGroup } from "@mui/material";
+import SettingsBrightness from "@mui/icons-material/SettingsBrightness";
+import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
+import VerticalAlignTop from "@mui/icons-material/VerticalAlignTop";
+
+function FloatingControls() {
+  const [themeMode, handleThemeMode] = useThemeMode();
+
+  function scrollTo(idElement: string) {
+    const topElement = document.getElementById(idElement);
+    if (topElement) {
+      const topTarget = topElement.offsetTop;
+      topElement?.scrollIntoView({ behavior: "smooth" });
+      window.scrollTo({
+        top: topTarget,
+        behavior: "smooth",
+      });
+    }
+  }
+
+  return (
+    <Box
+      component="nav"
+      aria-label="Page controls"
+      sx={{
+        right: { xs: 16, sm: 30 },
+        bottom: { xs: 16, sm: "auto" },
+        top: { xs: "auto", sm: "50%" },
+        position: "fixed",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "right",
+        zIndex: 999,
+      }}
+    >
+      <ToggleButtonGroup
+        aria-label="Quick actions"
+        orientation="vertical"
+        color="primary"
+        sx={{ backgroundColor: "background.paper", boxShadow: 2 }}
+      >
+        <ToggleButton
+          value
+          onClick={() => handleThemeMode()}
+          aria-label="toggle theme mode"
+        >
+          <SettingsBrightness sx={{ fontSize: "24px" }} />
+        </ToggleButton>
+        <ToggleButton
+          value
+          onClick={() => scrollTo("header-section")}
+          aria-label="view about"
+        >
+          <PersonOutlineIcon sx={{ fontSize: "24px" }} />
+        </ToggleButton>
+        <ToggleButton
+          value
+          onClick={() => scrollTo("portfolio-list")}
+          aria-label="scroll to top"
+        >
+          <VerticalAlignTop sx={{ fontSize: "24px" }} />
+        </ToggleButton>
+      </ToggleButtonGroup>
+    </Box>
+  );
+}
+
+export default FloatingControls;
