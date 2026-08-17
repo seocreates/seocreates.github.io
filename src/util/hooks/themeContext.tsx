@@ -1,40 +1,41 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useSyncExternalStore } from "react";
 import { PaletteMode } from "@mui/material";
 
-type themeContext = [
-  PaletteMode | undefined,
-  React.Dispatch<React.SetStateAction<PaletteMode | undefined>>
-];
+type themeContext = [PaletteMode, () => void];
 
-const ThemeContext = createContext<themeContext>(["light", () => null]);
+const ThemeContext = createContext<themeContext>(["light", () => {}]);
+
+const THEME_STORAGE_KEY = "theme";
+
+function subscribe(callback: () => void) {
+  window.addEventListener("storage", callback);
+  return () => window.removeEventListener("storage", callback);
+}
+
+function getSnapshot(): PaletteMode {
+  return localStorage.getItem(THEME_STORAGE_KEY) === "dark" ? "dark" : "light";
+}
+
+function getServerSnapshot(): PaletteMode {
+  // use the system theme by default
+  return "light";
+}
 
 export default function ThemeContextProvider({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const [themeMode, setThemeMode] = useState<PaletteMode>();
-
-  useEffect(() => {
-    if (localStorage.getItem("theme") === "dark") {
-      setThemeMode("dark");
-    } else if (localStorage.getItem("theme") === "light") {
-      setThemeMode("light");
-    } else {
-      // use the system theme by default
-      setThemeMode("light");
-    }
-  }, []);
+  const themeMode = useSyncExternalStore(
+    subscribe,
+    getSnapshot,
+    getServerSnapshot
+  );
 
   // toggle the theme function
   function handleThemeMode() {
-    if (themeMode === "dark") {
-      localStorage.setItem("theme", "light");
-      setThemeMode("light");
-    } else {
-      localStorage.setItem("theme", "dark");
-      setThemeMode("dark");
-    }
+    localStorage.setItem(THEME_STORAGE_KEY, themeMode === "dark" ? "light" : "dark");
+    window.dispatchEvent(new StorageEvent("storage"));
   }
 
   return (

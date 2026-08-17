@@ -15,7 +15,7 @@ export default function RemoteDevice() {
       sx={{ mt: { xs: 1, sm: 2 }, width: "100%", mb: 4 }}
     >
       <ReadableStack>
-        <Typography variant="h4" className="title" color="text.primary">
+        <Typography variant="h4" component="h2" className="title" color="text.primary">
           Remote Device Platform
         </Typography>
         <Typography variant="body1" color="text.primary">
@@ -28,7 +28,7 @@ export default function RemoteDevice() {
         </Typography>
 
         <Stack spacing={2} direction={"column"}>
-          <Typography variant="h6" color="text.secondary">
+          <Typography variant="h6" component="h3" color="text.secondary">
             Background
           </Typography>
           <Typography variant="body1" color="text.primary">
@@ -47,7 +47,7 @@ export default function RemoteDevice() {
         </Stack>
 
         <Stack spacing={2} direction={"column"}>
-          <Typography variant="h6" color="text.secondary">
+          <Typography variant="h6" component="h3" color="text.secondary">
             Responsibilities
           </Typography>
           <Typography variant="body1" color="text.primary">
@@ -72,7 +72,7 @@ export default function RemoteDevice() {
           </Typography>
         </Stack>
         <Stack spacing={3} direction={"column"} mb={{ sm: 5, md: 0 }}>
-          <Typography variant="h6" color="text.secondary">
+          <Typography variant="h6" component="h3" color="text.secondary">
             Outcomes
           </Typography>
           <div>

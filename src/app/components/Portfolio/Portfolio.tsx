@@ -154,19 +154,19 @@ export default function Portfolio() {
                     component={Button}
                     onClick={() => handleIndexChange(index)}
                   >
-                    <Image
-                      src={image}
-                      width={0}
-                      height={300}
-                      sizes="(max-width: 564px) 100vw"
-                      style={{
-                        objectFit: "cover",
-                        objectPosition: "left top",
-                        width: "100%",
-                      }}
-                      alt={title}
-                      priority
-                    />
+                    <Box sx={{ position: "relative", width: "100%", height: 300 }}>
+                      <Image
+                        src={image}
+                        fill
+                        sizes="(max-width: 564px) 100vw"
+                        style={{
+                          objectFit: "cover",
+                          objectPosition: "left top",
+                        }}
+                        alt={title}
+                        priority
+                      />
+                    </Box>
                     <Box
                       sx={{
                         width: "100%",
@@ -183,6 +183,7 @@ export default function Portfolio() {
                         <Typography
                           color="text.primary"
                           variant="h5"
+                          component="p"
                           sx={{ textTransform: "capitalize" }}
                         >
                           {title}

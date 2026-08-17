@@ -12,7 +12,7 @@ export default function AccountManagement() {
   return (
     <Grid container id="account-management" sx={{ mt: { xs: 1, sm: 2 } }}>
       <ReadableStack>
-        <Typography variant="h4" className="title" color="text.primary">
+        <Typography variant="h4" component="h2" className="title" color="text.primary">
           Account Management Services
         </Typography>
         <Typography variant="body2" color="text.primary">
@@ -22,7 +22,7 @@ export default function AccountManagement() {
         </Typography>
 
         <Stack spacing={2} direction={"column"}>
-          <Typography variant="h6" color="text.secondary">
+          <Typography variant="h6" component="h3" color="text.secondary">
             Background
           </Typography>
           <Typography variant="body1" color="text.primary">
@@ -36,7 +36,7 @@ export default function AccountManagement() {
         </Stack>
 
         <Stack spacing={2} direction={"column"}>
-          <Typography variant="h6" color="text.secondary">
+          <Typography variant="h6" component="h3" color="text.secondary">
             Responsibilities
           </Typography>
           <Typography variant="body1" color="text.primary">
@@ -67,7 +67,7 @@ export default function AccountManagement() {
         </Stack>
 
         <Stack spacing={2} direction={"column"}>
-          <Typography variant="h6" color="text.secondary">
+          <Typography variant="h6" component="h3" color="text.secondary">
             Research
           </Typography>
           <Typography variant="body1" color="text.primary">
@@ -113,7 +113,7 @@ export default function AccountManagement() {
 
       <ReadableStack my={1}>
         <Stack spacing={2}>
-          <Typography variant="h6" color="text.secondary">
+          <Typography variant="h6" component="h3" color="text.secondary">
             Conclusion
           </Typography>
           <Typography variant="body1" color="text.primary">
@@ -169,7 +169,7 @@ export default function AccountManagement() {
           md={4}
         >
           <Stack spacing={3} direction={"column"} mb={0}>
-            <Typography variant="h6" color="text.secondary">
+            <Typography variant="h6" component="h3" color="text.secondary">
               Outcomes
             </Typography>
             <div>

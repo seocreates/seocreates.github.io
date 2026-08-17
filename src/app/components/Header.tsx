@@ -12,7 +12,7 @@ export default function Header() {
   const theme = useAppSelector((state) => state.theme.mode);
   return (
     <Box
-      id="main"
+      id="hero"
       sx={(theme) => ({
         width: "100%",
         backgroundColor: "background.palette",
@@ -35,7 +35,6 @@ export default function Header() {
           sx={{ width: { xs: "100%", sm: "80%" }, zIndex: 99 }}
         >
           <Typography
-            component="span"
             variant="h1"
             textAlign="center"
             fontWeight="bold"
@@ -52,6 +51,7 @@ export default function Header() {
           </Typography>
           <Typography
             variant="h5"
+            component="p"
             textAlign="center"
             color="text.primary"
             sx={{

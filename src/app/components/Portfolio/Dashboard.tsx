@@ -21,7 +21,7 @@ export default function Dashboard() {
     <Grid container id="dashboard" sx={{ mt: { xs: 1, sm: 2 }, mb: 4 }}>
       <Grid item xs={12}>
         <ReadableStack mb={5}>
-          <Typography variant="h4" className="title" color="text.primary">
+          <Typography variant="h4" component="h2" className="title" color="text.primary">
             Core Dashboard
           </Typography>
           <Typography
@@ -34,7 +34,7 @@ export default function Dashboard() {
             Agreement purposes.
           </Typography>
           <Stack spacing={2} direction={"column"}>
-            <Typography variant="h6" color="text.secondary">
+            <Typography variant="h6" component="h3" color="text.secondary">
               Background
             </Typography>
             <Typography variant="body1" color="text.primary">
@@ -66,7 +66,7 @@ export default function Dashboard() {
       >
         <Grid item xs={12} sm={12} md={4}>
           <Stack spacing={2}>
-            <Typography variant="h6" color="text.secondary">
+            <Typography variant="h6" component="h3" color="text.secondary">
               Problem
             </Typography>
             <Typography variant="body1" color="text.primary">
@@ -121,7 +121,7 @@ export default function Dashboard() {
 
       <ReadableStack mt={5}>
         <Stack spacing={2} direction={"column"}>
-          <Typography variant="h6" color="text.secondary">
+          <Typography variant="h6" component="h3" color="text.secondary">
             First Iteration
           </Typography>
           <Typography variant="body1" color="text.primary">
@@ -213,7 +213,7 @@ export default function Dashboard() {
 
       <ReadableStack mt={2}>
         <Stack spacing={2} direction={"column"}>
-          <Typography variant="h6" color="text.secondary">
+          <Typography variant="h6" component="h3" color="text.secondary">
             Conclusion
           </Typography>
           <Typography variant="body1" color="text.primary">
@@ -323,7 +323,7 @@ export default function Dashboard() {
 
       <ReadableStack mt={2}>
         <Stack spacing={3} direction={"column"} mb={{ sm: 5, md: 0 }}>
-          <Typography variant="h6" color="text.secondary">
+          <Typography variant="h6" component="h3" color="text.secondary">
             Outcomes
           </Typography>
           <div>
