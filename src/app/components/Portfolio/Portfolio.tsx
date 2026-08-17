@@ -92,20 +92,6 @@ const projects = [
     image: remoteDevice,
     show: true,
   },
-  {
-    title: "Reservation System",
-    subheader: "2022",
-    description: "Design & Development",
-    image: deviceReservation,
-    show: true,
-  },
-  {
-    title: "Account Management Services",
-    subheader: "2021",
-    description: "Design",
-    image: accountWeb,
-    show: true,
-  },
 ];
 
 export default function Portfolio() {
@@ -141,82 +127,78 @@ export default function Portfolio() {
           },
         }}
       >
-        {projects.map(
-          ({ title, subheader, description, image, show }, index) => {
-            if (show)
-              return (
-                <Grid item key={title} sm={12} md={6}>
-                  <CardButton
-                    className={
-                      projectIndex === index ? "selected" : "selectable"
-                    }
-                    key={index}
-                    component={Button}
-                    onClick={() => handleIndexChange(index)}
+        {projects.map(({ title, subheader, description, image, show }, index) => {
+          if (show)
+            return (
+              <Grid item key={title} sm={12} md={6}>
+                <CardButton
+                  className={projectIndex === index ? "selected" : "selectable"}
+                  key={index}
+                  component={Button}
+                  onClick={() => handleIndexChange(index)}
+                >
+                  <Box sx={{ position: "relative", width: "100%", height: 300 }}>
+                    <Image
+                      src={image}
+                      fill
+                      sizes="(max-width: 564px) 100vw"
+                      style={{
+                        objectFit: "cover",
+                        objectPosition: "left top",
+                      }}
+                      alt={title}
+                      priority
+                    />
+                  </Box>
+                  <Box
+                    sx={{
+                      width: "100%",
+                      display: "flex",
+                      textAlign: "left",
+                      justifyContent: "space-between",
+                      alignItems: "left",
+                      background: "transparent !important",
+                      py: 1.5,
+                      px: 2,
+                    }}
                   >
-                    <Box sx={{ position: "relative", width: "100%", height: 300 }}>
-                      <Image
-                        src={image}
-                        fill
-                        sizes="(max-width: 564px) 100vw"
-                        style={{
-                          objectFit: "cover",
-                          objectPosition: "left top",
-                        }}
-                        alt={title}
-                        priority
-                      />
-                    </Box>
-                    <Box
+                    <Grid item xs>
+                      <Typography
+                        color="text.primary"
+                        variant="h5"
+                        component="p"
+                        sx={{ textTransform: "capitalize" }}
+                      >
+                        {title}
+                      </Typography>
+                      <Typography
+                        component="span"
+                        color="text.secondary"
+                        variant="body2"
+                        sx={{ textTransform: "capitalize" }}
+                      >
+                        {description} {subheader}
+                      </Typography>
+                    </Grid>
+                    <Grid
+                      item
+                      xs={1}
+                      color="text.primary"
                       sx={{
-                        width: "100%",
                         display: "flex",
-                        textAlign: "left",
-                        justifyContent: "space-between",
-                        alignItems: "left",
-                        background: "transparent !important",
-                        py: 1.5,
-                        px: 2,
+                        alignItems: "center",
+                        justifyContent: "center",
+                        pt: 1,
                       }}
                     >
-                      <Grid item xs>
-                        <Typography
-                          color="text.primary"
-                          variant="h5"
-                          component="p"
-                          sx={{ textTransform: "capitalize" }}
-                        >
-                          {title}
-                        </Typography>
-                        <Typography
-                          component="span"
-                          color="text.secondary"
-                          variant="body2"
-                          sx={{ textTransform: "capitalize" }}
-                        >
-                          {description} {subheader}
-                        </Typography>
-                      </Grid>
-                      <Grid
-                        item
-                        xs={1}
-                        color="text.primary"
-                        sx={{
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                          pt: 1,
-                        }}
-                      >
-                        {projectIndex === index ? <></> : <ArrowDownwardIcon />}
-                      </Grid>
-                    </Box>
-                  </CardButton>
-                </Grid>
-              );
-            else return;
-          }
-        )}
+                      {projectIndex === index ? <></> : <ArrowDownwardIcon />}
+                    </Grid>
+                  </Box>
+                </CardButton>
+              </Grid>
+            );
+          else return;
+        })}
       </Grid>
       <div id="portfolio-section">
         <PortfolioDetails index={projectIndex} />
