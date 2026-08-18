@@ -6,12 +6,13 @@ import Typography from "@mui/material/Typography";
 import { ReadableStack } from "./Portfolio";
 import Stack from "@mui/material/Stack";
 import agentBuilder1 from "images/portfolio/ai-platform/agent-builder-1.png";
-import agentBuilder2 from "images/portfolio/ai-platform/agent-builder-2.png";
-import agentBuilder3 from "images/portfolio/ai-platform/agent-builder-3.png";
-import agentBuilder4 from "images/portfolio/ai-platform/agent-builder-4.png";
+import agentBuilderModel1 from "images/portfolio/ai-platform/agent-builder-model-1.png";
+import agentBuilderPreviewChat1 from "images/portfolio/ai-platform/agent-builder-preview-chat-1.png";
+import agentBuilderPreviewGeneratingArtifact from "images/portfolio/ai-platform/agent-builder-preview-generating-artifact.png";
+import agentExecutionEmpty from "images/portfolio/ai-platform/agent-execution-empty.png";
 import agentExecution1 from "images/portfolio/ai-platform/agent-execution-1.png";
-import agentExecution2 from "images/portfolio/ai-platform/agent-execution-2.png";
-import agentExecution3 from "images/portfolio/ai-platform/agent-execution-3.png";
+import agentExecutionConfidenceOverview from "images/portfolio/ai-platform/agent-execution-confidence-overview.png";
+import agentExecutionConfidenceReasoning from "images/portfolio/ai-platform/agent-execution-confidence-reasoning.png";
 
 export default function AgentPlatform() {
   return (
@@ -78,7 +79,7 @@ export default function AgentPlatform() {
                 objectFit: "contain",
                 width: "100%",
                 height: "auto",
-                borderRadius: 20,
+                borderRadius: 16,
               }}
               alt="agent builder with test chat and configuration in one viewport"
               loading="lazy"
@@ -89,7 +90,7 @@ export default function AgentPlatform() {
           </Box>
           <Box>
             <Image
-              src={agentBuilder2}
+              src={agentBuilderModel1}
               width={0}
               height={0}
               sizes="100vw"
@@ -97,18 +98,18 @@ export default function AgentPlatform() {
                 objectFit: "contain",
                 width: "100%",
                 height: "auto",
-                borderRadius: 20,
+                borderRadius: 16,
               }}
-              alt="testing agent responses against live configuration"
+              alt="choosing a primary model with capabilities and pricing visible in the picker"
               loading="lazy"
             />
             <Typography variant="caption" fontStyle={"italic"} color="text.secondary">
-              Testing Responses Against Live Configuration Changes
+              Choosing a Primary Model with Capabilities and Pricing Visible
             </Typography>
           </Box>
           <Box>
             <Image
-              src={agentBuilder3}
+              src={agentBuilderPreviewChat1}
               width={0}
               height={0}
               sizes="100vw"
@@ -116,18 +117,18 @@ export default function AgentPlatform() {
                 objectFit: "contain",
                 width: "100%",
                 height: "auto",
-                borderRadius: 20,
+                borderRadius: 16,
               }}
-              alt="automated evaluation and coherence scoring"
+              alt="testing agent responses against unsaved configuration changes with a confidence score breakdown"
               loading="lazy"
             />
             <Typography variant="caption" fontStyle={"italic"} color="text.secondary">
-              Automated Evaluation and Coherence Scoring
+              Testing Responses and Confidence Scores Before Saving
             </Typography>
           </Box>
           <Box>
             <Image
-              src={agentBuilder4}
+              src={agentBuilderPreviewGeneratingArtifact}
               width={0}
               height={0}
               sizes="100vw"
@@ -135,13 +136,13 @@ export default function AgentPlatform() {
                 objectFit: "contain",
                 width: "100%",
                 height: "auto",
-                borderRadius: 20,
+                borderRadius: 16,
               }}
-              alt="publishing an agent version"
+              alt="agent generating a structured csv artifact in real time during testing"
               loading="lazy"
             />
             <Typography variant="caption" fontStyle={"italic"} color="text.secondary">
-              Publishing an Agent Version
+              Generating and Streaming a Structured Artifact in Real Time
             </Typography>
           </Box>
         </Stack>
@@ -149,6 +150,25 @@ export default function AgentPlatform() {
 
       <Grid item xs={12}>
         <Stack id="agent-execution" spacing={4}>
+          <Box>
+            <Image
+              src={agentExecutionEmpty}
+              width={0}
+              height={0}
+              sizes="100vw"
+              style={{
+                objectFit: "contain",
+                width: "100%",
+                height: "auto",
+                borderRadius: 16,
+              }}
+              alt="empty execution view for starting a new conversation with a published agent"
+              loading="lazy"
+            />
+            <Typography variant="caption" fontStyle={"italic"} color="text.secondary">
+              Starting a New Conversation with a Published Agent
+            </Typography>
+          </Box>
           <Box>
             <Image
               src={agentExecution1}
@@ -159,28 +179,9 @@ export default function AgentPlatform() {
                 objectFit: "contain",
                 width: "100%",
                 height: "auto",
-                borderRadius: 20,
+                borderRadius: 16,
               }}
-              alt="execution view for a published agent"
-              loading="lazy"
-            />
-            <Typography variant="caption" fontStyle={"italic"} color="text.secondary">
-              Execution View for a Published Agent
-            </Typography>
-          </Box>
-          <Box>
-            <Image
-              src={agentExecution2}
-              width={0}
-              height={0}
-              sizes="100vw"
-              style={{
-                objectFit: "contain",
-                width: "100%",
-                height: "auto",
-                borderRadius: 20,
-              }}
-              alt="conversation overview with confidence score, sources, and artifacts"
+              alt="execution view for a published agent with conversation overview, confidence score, sources, and artifacts"
               loading="lazy"
             />
             <Typography variant="caption" fontStyle={"italic"} color="text.secondary">
@@ -189,7 +190,7 @@ export default function AgentPlatform() {
           </Box>
           <Box>
             <Image
-              src={agentExecution3}
+              src={agentExecutionConfidenceOverview}
               width={0}
               height={0}
               sizes="100vw"
@@ -197,13 +198,32 @@ export default function AgentPlatform() {
                 objectFit: "contain",
                 width: "100%",
                 height: "auto",
-                borderRadius: 20,
+                borderRadius: 16,
               }}
-              alt="cost and token usage breakdown"
+              alt="confidence score overview broken down across judgment and statistical modules"
               loading="lazy"
             />
             <Typography variant="caption" fontStyle={"italic"} color="text.secondary">
-              Cost and Token Usage Breakdown
+              Confidence Score Breakdown Across Judgment and Statistical Modules
+            </Typography>
+          </Box>
+          <Box>
+            <Image
+              src={agentExecutionConfidenceReasoning}
+              width={0}
+              height={0}
+              sizes="100vw"
+              style={{
+                objectFit: "contain",
+                width: "100%",
+                height: "auto",
+                borderRadius: 16,
+              }}
+              alt="per-turn reasoning and analysis behind an individual confidence score module"
+              loading="lazy"
+            />
+            <Typography variant="caption" fontStyle={"italic"} color="text.secondary">
+              Per-Turn Reasoning Behind Each Confidence Score
             </Typography>
           </Box>
         </Stack>
