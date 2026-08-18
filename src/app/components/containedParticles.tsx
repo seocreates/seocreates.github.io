@@ -4,6 +4,7 @@ import React, { useRef, useEffect } from "react";
 import { useThemeMode } from "util/hooks/themeContext";
 import { styled } from "@mui/system";
 import { useAppSelector } from "util/hooks";
+import { primary, secondary } from "app/theme";
 
 interface ParticlesProps {
   quantity?: number;
@@ -13,78 +14,124 @@ interface ParticlesProps {
   id: string;
 }
 
-const Container = styled("div")(({ theme }) => ({
-  position: "absolute",
-  inset: "0px",
-  zIndex: -1,
-  pointerEvents: "none",
-  ".hide": {
-    opacity: 0,
-  },
+const Container = styled("div")(({ theme }) => {
+  const isDark = theme.palette.mode === "dark";
 
-  ".circle": {
+  return {
     position: "absolute",
-    borderRadius: "100%",
-    opacity: 1,
-    transformStyle: "preserve-3d",
-  },
-  ".large-particles": {
-    animation: "fadeIn 0.5s linear",
-    top: "10vh",
-    left: "12vw",
-    width: "450px",
-    height: "450px",
-    background:
-      theme.palette.mode === "light"
-        ? "linear-gradient(145deg, #a1c4e6  25%, #FDFEFE 90%)"
-        : "linear-gradient(145deg, #154360  30%, #000000 90%)",
-  },
-  ".small-particles": {
-    animation: "fadeIn 2 s linear",
-    top: "60vh",
-    right: "12vw",
-    width: "250px",
-    height: "250px",
-    background:
-      theme.palette.mode === "light"
-        ? "linear-gradient(110deg, #F4F6F7  25%, #D6DBDF  80%)"
-        : "linear-gradient(110deg, #171c1f 20%, #212F3C 80%)",
-  },
-  ".tertiary-particles": {
-    animation: "fadeIn 3s linear",
-    top: "15vh",
-    right: "30vw",
-    width: "150px",
-    height: "150px",
-    background:
-      theme.palette.mode === "light"
-        ? "linear-gradient(20deg, #FAF9FB  25%,#D6CADD  80%)"
-        : "linear-gradient(20deg, #171c1f 20%, #5D5263 80%)",
-  },
+    inset: "0px",
+    zIndex: -1,
+    pointerEvents: "none",
+    ".hide": {
+      opacity: 0,
+    },
 
-  "@keyframes fadeIn": {
-    "0%": { opacity: 0 },
-    "100%": { opacity: 1 },
-  },
-}));
+    // Glow (blurred gradient) lives on ::before so the blur filter never
+    // touches the crisp dust-particle canvas rendered inside the element.
+    ".circle": {
+      position: "absolute",
+      borderRadius: "100%",
+      opacity: 1,
+      transformStyle: "preserve-3d",
+      "&::before": {
+        content: '""',
+        position: "absolute",
+        inset: 0,
+        borderRadius: "inherit",
+        zIndex: -1,
+        pointerEvents: "none",
+      },
+    },
 
-function ContainedParticles({
-  quantity = 30,
-  refresh = false,
-  id,
-}: ParticlesProps) {
+    "@keyframes fadeInScale": {
+      "0%": { opacity: 0, transform: "scale(0.85)" },
+      "100%": { opacity: 1, transform: "scale(1)" },
+    },
+
+    ".large-particles": {
+      top: "10vh",
+      left: "12vw",
+      width: "480px",
+      height: "480px",
+      animation: "fadeInScale 1s ease-out backwards",
+      "&::before": {
+        filter: "blur(70px)",
+        opacity: 0.9,
+        background: isDark
+          ? `radial-gradient(circle at 35% 30%, ${secondary[800]} 0%, ${secondary[900]} 45%, transparent 75%)`
+          : `radial-gradient(circle at 35% 30%, ${secondary[100]} 0%, ${secondary[300]} 45%, transparent 75%)`,
+        animation: "driftLarge 16s ease-in-out 1s infinite",
+      },
+    },
+    ".small-particles": {
+      top: "60vh",
+      right: "12vw",
+      width: "260px",
+      height: "260px",
+      animation: "fadeInScale 1.2s ease-out 0.15s backwards",
+      "&::before": {
+        filter: "blur(40px)",
+        opacity: 0.5,
+        background: isDark
+          ? `radial-gradient(circle at 40% 35%, ${primary[400]} 0%, ${primary[700]} 55%, transparent 28%)`
+          : `radial-gradient(circle at 40% 35%, ${primary[300]} 0%, ${primary[600]} 55%, transparent 28%)`,
+        animation: "driftSmall 20s ease-in-out 1.35s infinite",
+      },
+    },
+    ".tertiary-particles": {
+      top: "15vh",
+      right: "30vw",
+      width: "160px",
+      height: "160px",
+      animation: "fadeInScale 1.4s ease-out 0.3s backwards",
+      "&::before": {
+        filter: "blur(28px)",
+        opacity: 0.7,
+        background: isDark
+          ? "radial-gradient(circle at 45% 30%, #9c7ba8 0%, #5c4966 55%, transparent 48%)"
+          : "radial-gradient(circle at 45% 30%, #f0d3ec 0%, #c07fb8 55%, transparent 48%)",
+        animation: "driftTertiary 13s ease-in-out 1.7s infinite",
+      },
+    },
+    "@keyframes driftLarge": {
+      "0%, 100%": { transform: "translate(0, 0) scale(1)" },
+      "50%": { transform: "translate(18px, -14px) scale(1.035)" },
+    },
+    "@keyframes driftSmall": {
+      "0%, 100%": { transform: "translate(0, 0) scale(1)" },
+      "50%": { transform: "translate(-14px, 12px) scale(1.05)" },
+    },
+    "@keyframes driftTertiary": {
+      "0%, 100%": { transform: "translate(0, 0) scale(1)" },
+      "50%": { transform: "translate(10px, 10px) scale(0.96)" },
+    },
+
+    "@media (prefers-reduced-motion: reduce)": {
+      ".large-particles, .small-particles, .tertiary-particles": {
+        animation: "none",
+        opacity: 1,
+        transform: "none",
+      },
+      ".large-particles::before, .small-particles::before, .tertiary-particles::before": {
+        animation: "none",
+      },
+    },
+  };
+});
+
+function ContainedParticles({ quantity = 30, refresh = false, id }: ParticlesProps) {
   const [themeMode] = useThemeMode();
-  const theme = useAppSelector((state) => state.theme.mode);
 
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const canvasContainerRef = useRef<HTMLDivElement>(null);
   const context = useRef<CanvasRenderingContext2D | null>(null);
   const circles = useRef<any[]>([]);
   const canvasSize = useRef<{ w: number; h: number }>({ w: 0, h: 0 });
+  const animationFrameId = useRef<number | null>(null);
   const dpr = typeof window !== "undefined" ? window.devicePixelRatio : 1;
   const prefersReducedMotion = useRef(
     typeof window !== "undefined" &&
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches,
   );
 
   const initCanvas = () => {
@@ -164,12 +211,7 @@ function ContainedParticles({
 
   const clearContext = () => {
     if (context.current) {
-      context.current.clearRect(
-        0,
-        0,
-        canvasSize.current.w,
-        canvasSize.current.h
-      );
+      context.current.clearRect(0, 0, canvasSize.current.w, canvasSize.current.h);
     }
   };
 
@@ -187,10 +229,9 @@ function ContainedParticles({
     start1: number,
     end1: number,
     start2: number,
-    end2: number
+    end2: number,
   ): number => {
-    const remapped =
-      ((value - start1) * (end2 - start2)) / (end1 - start1) + start2;
+    const remapped = ((value - start1) * (end2 - start2)) / (end1 - start1) + start2;
     return remapped > 0 ? remapped : 0;
   };
 
@@ -206,7 +247,7 @@ function ContainedParticles({
       ];
       const closestEdge = edge.reduce((a, b) => Math.min(a, b));
       const remapClosestEdge = parseFloat(
-        remapValue(closestEdge, 0, 20, 0, 1).toFixed(2)
+        remapValue(closestEdge, 0, 20, 0, 1).toFixed(2),
       );
       if (remapClosestEdge > 1) {
         circle.alpha += 0.02;
@@ -241,13 +282,21 @@ function ContainedParticles({
             translateY: circle.translateY,
             alpha: circle.alpha,
           },
-          true
+          true,
         );
       }
     });
     if (!prefersReducedMotion.current) {
-      window.requestAnimationFrame(animate);
+      animationFrameId.current = window.requestAnimationFrame(animate);
     }
+  };
+
+  const startAnimation = () => {
+    if (animationFrameId.current !== null) {
+      cancelAnimationFrame(animationFrameId.current);
+      animationFrameId.current = null;
+    }
+    animate();
   };
 
   useEffect(() => {
@@ -256,11 +305,15 @@ function ContainedParticles({
     }
 
     initCanvas();
-    animate();
+    startAnimation();
     window.addEventListener("resize", initCanvas);
 
     return () => {
       window.removeEventListener("resize", initCanvas);
+      if (animationFrameId.current !== null) {
+        cancelAnimationFrame(animationFrameId.current);
+        animationFrameId.current = null;
+      }
     };
   }, []);
 
@@ -269,7 +322,7 @@ function ContainedParticles({
   }, [refresh]);
 
   useEffect(() => {
-    animate();
+    startAnimation();
   }, [themeMode]);
 
   return (

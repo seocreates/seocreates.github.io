@@ -37,9 +37,6 @@ export default function AgentPlatform() {
               put the test chat and the configuration in one viewport, permanently, and
               made every edit provable before it ships.
             </Typography>
-            <Typography variant="body1" color="text.secondary" fontStyle="italic">
-              More coming soon.
-            </Typography>
           </Stack>
 
           <Stack spacing={2} direction={"column"}>
@@ -47,21 +44,23 @@ export default function AgentPlatform() {
               Responsibilities
             </Typography>
             <Typography variant="body1" color="text.primary">
-              Led end-to-end product design for the platform, owning the
-              experience from discovery through production across agent
-              configuration, knowledge base management, tool integration, and
-              response presentation.
+              Led end-to-end product design for the platform, owning the experience from
+              discovery through production across agent configuration, knowledge base
+              management, tool integration, and response presentation.
             </Typography>
             <Typography variant="body1" color="text.primary">
-              Operated in a fast-paced startup environment, shipping
-              improvements weekly. Analyzed user sessions in LogRocket to
-              surface usability issues and navigation friction, then
-              translated those findings into prioritized design work.
+              Operated in a fast-paced startup environment, shipping improvements weekly.
+              Analyzed user sessions in LogRocket to surface usability issues and
+              navigation friction, then translated those findings into prioritized design
+              work.
             </Typography>
             <Typography variant="body1" color="text.primary">
-              Partnered closely with back-end engineers to turn product
-              strategy into shipped experiences, working directly in React,
-              TypeScript, Tailwind CSS, and Shadcn UI.
+              Partnered closely with back-end engineers to turn product strategy into
+              shipped experiences, working directly in React, TypeScript, Tailwind CSS,
+              and Shadcn UI.
+            </Typography>
+            <Typography variant="body1" color="text.secondary" fontStyle="italic">
+              More coming soon.
             </Typography>
           </Stack>
         </ReadableStack>
