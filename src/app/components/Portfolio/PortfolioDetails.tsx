@@ -1,6 +1,7 @@
 import * as React from "react";
 import Dashboard from "./Dashboard";
 import RemoteDevice from "./RemoteDevice";
+import AgentPlatform from "./AgentPlatform";
 import Reservation from "./Reservation";
 import AccountManagement from "./AccountManagement";
 import Box from "@mui/material/Box";
@@ -37,10 +38,11 @@ export default function PortfolioDetails({ index }: { index: number | undefined 
             p: { xs: 3, sm: 4, md: 6 },
           }}
         >
-          {index === 1 && <Dashboard />}
-          {index === 2 && <RemoteDevice />}
-          {index === 3 && <Reservation />}
-          {index === 4 && <AccountManagement />}
+          {index === 1 && <AgentPlatform />}
+          {index === 2 && <Dashboard />}
+          {index === 3 && <RemoteDevice />}
+          {/* {index === 4 && <Reservation />}
+          {index === 5 && <AccountManagement />} */}
         </Box>
       </Box>
     );

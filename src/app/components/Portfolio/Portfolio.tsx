@@ -15,6 +15,7 @@ import accountWeb from "images/portfolio/account-web-access-prototype.png";
 import dashboardFinal from "images/portfolio/dashboard-final-data.png";
 import remoteDevice from "images/portfolio/remote-device-interaction-shell.png";
 import deviceReservation from "images/portfolio/reservation.png";
+import agentBuilderCover from "images/portfolio/ai-platform/agent-builder-1.png";
 
 const CardComponent = ({ ...props }) => <Card {...props} />;
 
@@ -77,6 +78,13 @@ const projects = [
     title: "Main Page",
     show: false,
     image: "",
+  },
+  {
+    title: "Agent Platform",
+    subheader: "2026",
+    description: "Design & Development",
+    image: agentBuilderCover,
+    show: true,
   },
   {
     title: "Core Dashboard",
