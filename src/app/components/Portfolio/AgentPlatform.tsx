@@ -41,6 +41,29 @@ export default function AgentPlatform() {
               More coming soon.
             </Typography>
           </Stack>
+
+          <Stack spacing={2} direction={"column"}>
+            <Typography variant="h6" component="h3" color="text.secondary">
+              Responsibilities
+            </Typography>
+            <Typography variant="body1" color="text.primary">
+              Led end-to-end product design for the platform, owning the
+              experience from discovery through production across agent
+              configuration, knowledge base management, tool integration, and
+              response presentation.
+            </Typography>
+            <Typography variant="body1" color="text.primary">
+              Operated in a fast-paced startup environment, shipping
+              improvements weekly. Analyzed user sessions in LogRocket to
+              surface usability issues and navigation friction, then
+              translated those findings into prioritized design work.
+            </Typography>
+            <Typography variant="body1" color="text.primary">
+              Partnered closely with back-end engineers to turn product
+              strategy into shipped experiences, working directly in React,
+              TypeScript, Tailwind CSS, and Shadcn UI.
+            </Typography>
+          </Stack>
         </ReadableStack>
       </Grid>
 
