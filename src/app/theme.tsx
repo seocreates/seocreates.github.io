@@ -3,7 +3,7 @@
 import type {} from "@mui/material/themeCssVarsAugmentation";
 import { ThemeOptions, alpha, createTheme } from "@mui/material/styles";
 import { PaletteMode } from "@mui/material";
-import { activeFont } from "./fonts";
+import { activeFont, displayFontFamily } from "./fonts";
 
 declare module "@mui/material/styles/createPalette" {
   interface ColorRange {
@@ -22,44 +22,52 @@ declare module "@mui/material/styles/createPalette" {
   interface PaletteColor extends ColorRange {}
 }
 
+/**
+ * Ink — the single text/UI ramp. A deep desaturated slate that sits warm
+ * against the paper background without reading as pure black.
+ */
 export const primary = {
-  50: "#fff5ff",
-  100: "#EBEDEF",
-  200: "#D6DBDF",
-  300: "#AEB6BF",
-  400: "#85929E",
-  500: "#5D6D7E",
-  600: "#34495E",
-  700: "#2E4053",
-  800: "#283747",
-  900: "#212F3C",
+  50: "#F2F4F5",
+  100: "#DFE5E8",
+  200: "#C2CDD3",
+  300: "#9AAAB3",
+  400: "#72868F",
+  500: "#52666F",
+  600: "#3D4E56",
+  700: "#2D3B42",
+  800: "#1F2B31",
+  900: "#141D22",
 };
 
+/**
+ * Accent — the periwinkle drawn out of the hero gradient. Used sparingly for
+ * interactive state so the gradient stays the only loud thing on the page.
+ */
 export const secondary = {
-  50: "#fff5ff",
-  100: "#D4E6F1",
-  200: "#A9CCE3",
-  300: "#7FB3D5",
-  400: "#5499C7 ",
-  500: "#2980B9",
-  600: "#2471A3",
-  700: "#1F618D",
-  800: "#1A5276",
-  900: "#154360",
+  50: "#F4F7FE",
+  100: "#E4EBFB",
+  200: "#C9D8F6",
+  300: "#A8C1F0",
+  400: "#83A5E6",
+  500: "#6288D6",
+  600: "#4A6DBC",
+  700: "#3B5698",
+  800: "#2E4275",
+  900: "#233254",
 };
 
-// export const secondary = {
-//   50: "#fff5ff",
-//   100: "#fcf1ff",
-//   200: "#f6ebff",
-//   300: "#e9deff",
-//   400: "#c6bcdd",
-//   500: "#a79dbd",
-//   600: "#7d7492",
-//   700: "#69607d",
-//   800: "#49415d",
-//   900: "#272039",
-// };
+/**
+ * The hero gradient palette. These are the only saturated colours in the
+ * system and they exist purely as light — never as type or chrome.
+ */
+export const glow = {
+  coral: "#F2643C",
+  blush: "#E9A6D4",
+  lilac: "#C3A5EC",
+  periwinkle: "#A6C2F2",
+  mint: "#9BD8A6",
+  butter: "#F6D98A",
+};
 
 export const red = {
   50: "#f9e3e6",
@@ -75,31 +83,39 @@ export const red = {
 };
 
 export const gray = {
-  50: "#FBFCFE",
-  100: "#EAF0F5",
-  200: "#D6E2EB",
-  300: "#BFCCD9",
-  400: "#94A6B8",
-  500: "#5B6B7C",
-  600: "#4C5967",
-  700: "#364049",
-  800: "#131B20",
-  900: "#090E10",
+  50: "#FBFAF7",
+  100: "#F3F2ED",
+  200: "#E7E5DD",
+  300: "#D3D0C6",
+  400: "#A8A497",
+  500: "#78746A",
+  600: "#4C4A44",
+  700: "#2A2C2C",
+  800: "#171B1D",
+  900: "#0E1214",
+};
+
+/** Warm paper in light mode, near-black in dark mode. */
+export const paper = {
+  light: "#F3F2ED",
+  lightRaised: "#FBFAF7",
+  dark: "#0E1214",
+  darkRaised: "#181D20",
 };
 
 const customTheme = (mode: PaletteMode) => ({
   palette: {
     mode,
     primary: {
-      light: primary[200],
-      main: primary[500],
-      dark: primary[800],
-      contrastText: primary[50],
+      light: primary[300],
+      main: primary[800],
+      dark: primary[900],
+      contrastText: gray[50],
       ...(mode === "dark" && {
-        contrastText: primary[50],
-        light: primary[50],
-        main: primary[500],
-        dark: primary[800],
+        light: primary[300],
+        main: primary[100],
+        dark: primary[200],
+        contrastText: primary[900],
       }),
     },
 
@@ -109,84 +125,121 @@ const customTheme = (mode: PaletteMode) => ({
       dark: secondary[800],
       ...(mode === "dark" && {
         light: secondary[200],
-        main: secondary[600],
-        dark: secondary[900],
+        main: secondary[300],
+        dark: secondary[500],
       }),
     },
     background: {
-      default: "#f8f8f8",
-      paper: "#ffffff",
-      ...(mode === "dark" && { default: gray[900], paper: gray[800] }),
+      default: paper.light,
+      paper: paper.lightRaised,
+      ...(mode === "dark" && { default: paper.dark, paper: paper.darkRaised }),
     },
+    divider:
+      mode === "light" ? "rgba(20, 29, 34, 0.12)" : "rgba(243, 242, 237, 0.14)",
     text: {
       primary: primary[900],
-      secondary: primary[600],
+      secondary: primary[500],
+      disabled: primary[300],
       ...(mode === "dark" && {
-        primary: primary[100],
-        secondary: secondary[200],
+        primary: gray[100],
+        secondary: primary[300],
+        disabled: primary[500],
       }),
     },
     action: {
-      selected: `${alpha(primary[200], 0.2)}`,
+      selected: `${alpha(primary[800], 0.08)}`,
+      hover: `${alpha(primary[800], 0.05)}`,
       ...(mode === "dark" && {
-        selected: alpha(primary[500], 0.2),
+        selected: alpha(gray[100], 0.1),
+        hover: alpha(gray[100], 0.06),
       }),
     },
   },
   typography: {
-    fontFamily: `${activeFont.style.fontFamily}, sans-serif`,
-    fontsize: 14,
+    fontFamily: `${activeFont.style.fontFamily}, -apple-system, system-ui, sans-serif`,
+    fontSize: 14,
+
+    // Display sizes use the editorial serif and fluid clamps so the hero
+    // stays proportional from 360px through ultrawide without breakpoints.
     h1: {
-      fontSize: 120,
-      fontWeight: 600,
-      lineHeight: 78 / 70,
-      letterSpacing: -0.2,
+      fontFamily: displayFontFamily,
+      fontSize: "clamp(3.25rem, 8.2vw, 8rem)",
+      fontWeight: 400,
+      lineHeight: 0.98,
+      letterSpacing: "-0.02em",
     },
     h2: {
-      fontSize: 75,
-      fontWeight: 600,
-      lineHeight: 1.2,
+      fontFamily: displayFontFamily,
+      fontSize: "clamp(2.5rem, 5.4vw, 4.5rem)",
+      fontWeight: 400,
+      lineHeight: 1.04,
+      letterSpacing: "-0.015em",
     },
     h3: {
-      fontSize: 60,
-      lineHeight: 1.2,
+      fontFamily: displayFontFamily,
+      fontSize: "clamp(2rem, 3.8vw, 3.25rem)",
+      fontWeight: 400,
+      lineHeight: 1.08,
+      letterSpacing: "-0.01em",
     },
     h4: {
-      fontSize: 40,
-      fontWeight: 300,
-      lineHeight: 1.5,
+      fontFamily: displayFontFamily,
+      fontSize: "clamp(1.75rem, 2.9vw, 2.6rem)",
+      fontWeight: 400,
+      lineHeight: 1.12,
+      letterSpacing: "-0.01em",
     },
     h5: {
-      fontSize: 30,
-      fontWeight: 300,
+      fontFamily: displayFontFamily,
+      fontSize: "clamp(1.4rem, 2vw, 1.9rem)",
+      fontWeight: 400,
+      lineHeight: 1.2,
     },
+
+    // h6 is the eyebrow/label voice: small, tracked, sans.
     h6: {
-      fontSize: 18,
+      fontSize: 12,
       textTransform: "uppercase" as const,
-      letterSpacing: 0.5,
+      letterSpacing: "0.1em",
       fontWeight: 500,
+      lineHeight: 1.4,
     },
     subtitle1: {
-      fontWeight: 300,
-      fontSize: 15,
+      fontWeight: 400,
+      fontSize: "clamp(1.0625rem, 1.4vw, 1.25rem)",
+      lineHeight: 1.6,
+      letterSpacing: "-0.005em",
     },
     subtitle2: {
-      fontWeight: 300,
+      fontWeight: 500,
       fontSize: 14,
+      lineHeight: 1.5,
+      letterSpacing: "0.01em",
     },
     body1: {
       fontWeight: 400,
-      fontSize: 15,
+      fontSize: 16.5,
+      lineHeight: 1.65,
+      letterSpacing: "-0.003em",
     },
     body2: {
       fontWeight: 400,
-      fontSize: 14,
+      fontSize: 15,
+      lineHeight: 1.6,
     },
     caption: {
       fontWeight: 400,
       fontSize: 13,
+      lineHeight: 1.5,
+      letterSpacing: "0.01em",
+    },
+    button: {
+      textTransform: "none" as const,
+      fontWeight: 500,
+      letterSpacing: 0,
     },
   },
+  shape: { borderRadius: 4 },
 });
 
 export default function getTheme(mode: PaletteMode): ThemeOptions {
@@ -195,6 +248,18 @@ export default function getTheme(mode: PaletteMode): ThemeOptions {
   const theme = createTheme({
     ...palette,
     components: {
+      MuiCssBaseline: {
+        styleOverrides: {
+          "::selection": {
+            background:
+              mode === "light" ? "rgba(166, 194, 242, 0.5)" : "rgba(166, 194, 242, 0.3)",
+          },
+          html: { scrollBehavior: "smooth", WebkitFontSmoothing: "antialiased" },
+          "@media (prefers-reduced-motion: reduce)": {
+            html: { scrollBehavior: "auto" },
+          },
+        },
+      },
       MuiTypography: {
         defaultProps: {
           variantMapping: {
@@ -204,12 +269,18 @@ export default function getTheme(mode: PaletteMode): ThemeOptions {
             h4: "h4",
             h5: "h5",
             h6: "h6",
-            subtitle1: "span",
+            subtitle1: "p",
             subtitle2: "span",
             body1: "p",
             body2: "p",
             inherit: "p",
           },
+        },
+      },
+      MuiContainer: {
+        defaultProps: { maxWidth: "lg" },
+        styleOverrides: {
+          root: { paddingLeft: 24, paddingRight: 24 },
         },
       },
     },

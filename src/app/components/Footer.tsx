@@ -1,56 +1,33 @@
 import * as React from "react";
-import MuiLink from "@mui/material/Link";
-import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
+import Container from "@mui/material/Container";
+import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
-
-function Copyright() {
-  return (
-    <Typography variant="body2" color="text.secondary" mt={1}>
-      {"Copyright © "}
-      <MuiLink color="inherit" href="https://seocreates.github.io/">
-        seocreates.github.io
-      </MuiLink>{" "}
-      {new Date().getFullYear()}
-    </Typography>
-  );
-}
-
-function MadeWith() {
-  return (
-    <Typography variant="body2" color="text.secondary" mt={1}>
-      {"Made with love using "}
-      <Typography component={"span"} variant="body2" color="text.primary">
-        Next.js and React
-      </Typography>
-    </Typography>
-  );
-}
 
 export default function Footer() {
   return (
-    <Container
+    <Box
       component="footer"
       sx={{
-        textAlign: { sm: "center", md: "left" },
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        gap: { xs: 4, sm: 8 },
-        py: { xs: 8, sm: 10 },
+        borderTop: "1px solid",
+        borderColor: "divider",
+        py: { xs: 4, md: 5 },
       }}
     >
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: { xs: "column", sm: "row" },
-          justifyContent: "space-between",
-          width: "100%",
-        }}
-      >
-        <Copyright />
-        <MadeWith />
-      </Box>
-    </Container>
+      <Container>
+        <Stack
+          direction={{ xs: "column", sm: "row" }}
+          justifyContent="space-between"
+          spacing={1}
+        >
+          <Typography variant="caption" color="text.secondary">
+            © {new Date().getFullYear()} Victoria
+          </Typography>
+          <Typography variant="caption" color="text.secondary">
+            Designed and built with Next.js and React
+          </Typography>
+        </Stack>
+      </Container>
+    </Box>
   );
 }

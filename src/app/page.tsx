@@ -2,34 +2,17 @@
 
 import React, { Suspense } from "react";
 import Loading from "./components/Loading";
-import { lazy } from "react";
 import ThemeContextProvider from "../util/hooks/themeContext";
 import { useThemeMode } from "../util/hooks/themeContext";
-import { styled } from "@mui/system";
 import Box from "@mui/material/Box";
 import { CssBaseline } from "@mui/material";
 import { PaletteMode } from "@mui/material";
 import { ThemeProvider } from "@mui/material";
 import getTheme from "./theme";
+import TopBar from "./components/TopBar";
 import Header from "./components/Header";
 import Portfolio from "./components/Portfolio/Portfolio";
-import FloatingControls from "./components/FloatingControls";
 import Footer from "./components/Footer";
-
-const ContainedParticles = lazy(() => import("./components/containedParticles"));
-
-const Background = styled("div")(({ theme }) => ({
-  position: "absolute",
-  zIndex: -99,
-  backgroundColor: theme.palette.background.default,
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-  justifyContent: "center",
-  width: "100vw",
-  height: "inherit",
-  overflow: "hidden",
-}));
 
 function MainContent() {
   const [themeMode] = useThemeMode();
@@ -41,17 +24,22 @@ function MainContent() {
   return (
     <ThemeProvider theme={CustomTheme}>
       <CssBaseline />
-      <Background>
-        <ContainedParticles />
+      <Box
+        sx={{
+          position: "relative",
+          minHeight: "100vh",
+          backgroundColor: "background.default",
+          color: "text.primary",
+          overflowX: "clip",
+        }}
+      >
+        <TopBar />
         <Box component="main">
-          <div id="header-section" />
           <Header />
-          <div id="portfolio-list" />
           <Portfolio />
         </Box>
-        <FloatingControls />
         <Footer />
-      </Background>
+      </Box>
     </ThemeProvider>
   );
 }

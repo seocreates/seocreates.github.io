@@ -1,62 +1,28 @@
+"use client";
+
 import * as React from "react";
 import { styled } from "@mui/system";
 import PortfolioDetails from "./PortfolioDetails";
+import { FIGURE_RADIUS } from "./CaseStudy";
 import Stack from "@mui/material/Stack";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
-import Card from "@mui/material/Card";
-import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
-import CheckIcon from "@mui/icons-material/Check";
-import accountWeb from "images/portfolio/account-web-access-prototype.png";
 import dashboardFinal from "images/portfolio/dashboard-final-data.png";
 import remoteDevice from "images/portfolio/remote-device-interaction-shell.png";
-import deviceReservation from "images/portfolio/reservation.png";
 import agentBuilderCover from "images/portfolio/ai-platform/agent-builder-1.png";
-
-const CardComponent = ({ ...props }) => <Card {...props} />;
-
-const CardButton = styled(CardComponent)(({ theme }) => ({
-  position: "relative",
-  flexDirection: "column",
-  height: "fit-content",
-  width: "100%",
-  background: theme.palette.background.paper,
-  // borderRadius: 1,
-  overflow: "hidden",
-  lineHeight: "normal",
-  boxShadow:
-    theme.palette.mode === "light"
-      ? "0 1px 2px rgba(9, 14, 16, 0.06), 0 1px 4px rgba(9, 14, 16, 0.08)"
-      : "0 1px 2px rgba(0, 0, 0, 0.4), 0 1px 4px rgba(0, 0, 0, 0.5)",
-  transition: "transform 320ms ease-out, box-shadow 320ms ease-out",
-
-  "&:hover:not(.selected)": {
-    transform: "translateY(-6px)",
-    boxShadow:
-      theme.palette.mode === "light"
-        ? "0 24px 40px -16px rgba(9, 14, 16, 0.28)"
-        : "0 24px 40px -16px rgba(0, 0, 0, 0.7)",
-  },
-
-  "&:hover .portfolio-card-image": {
-    transform: "scale(1.06)",
-  },
-
-  // "&.selected": {
-  //   boxShadow: `0 0 0 3px ${theme.palette.primary.main}`,
-  // },
-
-  "&.MuiPaper-root": { padding: 0, margin: 0 },
-}));
 
 const StackComponent = ({ ...props }) => (
   <Stack id="readable-stack" spacing={5} direction={"column"} {...props} />
 );
 
+/**
+ * Retained for the archived Reservation and AccountManagement case studies,
+ * which still use the pre-CaseStudy reading layout.
+ */
 export const ReadableStack = styled(StackComponent)(({ theme }) => ({
   "h4.title": {
     marginBottom: theme.spacing(-2),
@@ -73,219 +39,235 @@ export const ReadableStack = styled(StackComponent)(({ theme }) => ({
   },
 }));
 
-const projects = [
+type Project = {
+  index: number;
+  title: string;
+  year: string;
+  role: string;
+  summary: string;
+  image: StaticImageData;
+  /** The lead project runs full width; the rest pair up beneath it. */
+  featured?: boolean;
+};
+
+const PROJECTS: Project[] = [
   {
-    title: "Main Page",
-    show: false,
-    image: "",
-  },
-  {
+    index: 1,
     title: "Agent Platform",
-    subheader: "2026",
-    description: "Design & Development",
+    year: "2026",
+    role: "Design & Development",
+    summary:
+      "Configuration and proof in one viewport, so every edit to an agent is testable before it reaches a customer.",
     image: agentBuilderCover,
-    show: true,
+    featured: true,
   },
   {
+    index: 2,
     title: "Core Dashboard",
-    subheader: "2024 - 2023",
-    description: "Design",
+    year: "2023 — 2024",
+    role: "Design",
+    summary:
+      "A modular grid that keeps streaming operational data from rearranging itself under the user.",
     image: dashboardFinal,
-    show: true,
   },
   {
+    index: 3,
     title: "Remote Device Platform",
-    subheader: "2023",
-    description: "Design & Development",
+    year: "2023",
+    role: "Design & Development",
+    summary:
+      "Real devices, logs, and an exec shell in one workspace for internal developers and QA.",
     image: remoteDevice,
-    show: true,
   },
 ];
 
+const ProjectCard = styled("button")(({ theme }) => ({
+  appearance: "none",
+  border: "none",
+  padding: 0,
+  margin: 0,
+  width: "100%",
+  textAlign: "left",
+  cursor: "pointer",
+  background: "transparent",
+  color: "inherit",
+  font: "inherit",
+  display: "block",
+
+  ".frame": {
+    position: "relative",
+    width: "100%",
+    overflow: "hidden",
+    borderRadius: FIGURE_RADIUS,
+    border: "1px solid",
+    borderColor: theme.palette.divider,
+    backgroundColor: theme.palette.background.paper,
+    transition:
+      "transform 420ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 420ms cubic-bezier(0.22, 1, 0.36, 1)",
+  },
+
+  ".shot": {
+    position: "absolute",
+    inset: 0,
+    transition: "transform 700ms cubic-bezier(0.22, 1, 0.36, 1)",
+  },
+
+  "&:hover .frame, &:focus-visible .frame": {
+    transform: "translateY(-6px)",
+    boxShadow:
+      theme.palette.mode === "light"
+        ? "0 30px 60px -30px rgba(20, 29, 34, 0.4)"
+        : "0 30px 60px -30px rgba(0, 0, 0, 0.85)",
+  },
+  "&:hover .shot": { transform: "scale(1.04)" },
+  "&:focus-visible": { outline: "none" },
+  "&:focus-visible .frame": {
+    outline: `2px solid ${theme.palette.text.primary}`,
+    outlineOffset: 3,
+  },
+
+  "&.is-open .frame": {
+    borderColor: theme.palette.text.primary,
+  },
+
+  "@media (prefers-reduced-motion: reduce)": {
+    ".frame, .shot": { transition: "none" },
+    "&:hover .frame": { transform: "none" },
+    "&:hover .shot": { transform: "none" },
+  },
+}));
+
+function ProjectTile({
+  project,
+  open,
+  onSelect,
+}: {
+  project: Project;
+  open: boolean;
+  onSelect: () => void;
+}) {
+  const { index, title, year, role, summary, image, featured } = project;
+
+  return (
+    <ProjectCard
+      type="button"
+      className={open ? "is-open" : undefined}
+      aria-expanded={open}
+      aria-controls="portfolio-section"
+      onClick={onSelect}
+    >
+      <Box className="frame">
+        {/*
+          The screenshots are near-white product UI. Any scrim strong enough to
+          carry white type over them turns into a black slab across the shot,
+          so the caption sits below the image on paper instead: the screenshot
+          stays fully visible and the type needs no cover at all.
+        */}
+        <Box
+          className="shot-wrap"
+          sx={{
+            position: "relative",
+            width: "100%",
+            height: {
+              xs: 200,
+              sm: featured ? 380 : 260,
+              md: featured ? 440 : 280,
+            },
+            overflow: "hidden",
+          }}
+        >
+          <Box className="shot" sx={{ position: "absolute", inset: 0 }}>
+            <Image
+              src={image}
+              fill
+              sizes={featured ? "100vw" : "(max-width: 900px) 100vw, 50vw"}
+              style={{ objectFit: "cover", objectPosition: "left top" }}
+              alt=""
+              priority={featured}
+            />
+          </Box>
+        </Box>
+
+        <Box
+          className="meta"
+          sx={{
+            px: { xs: 2.5, sm: 3 },
+            py: { xs: 2.5, sm: 3 },
+            borderTop: "1px solid",
+            borderColor: "divider",
+            backgroundColor: "background.paper",
+          }}
+        >
+          <Stack direction="row" spacing={1.5} alignItems="baseline" sx={{ mb: 1 }}>
+            <Typography variant="h6" component="span" color="text.secondary">
+              {String(index).padStart(2, "0")}
+            </Typography>
+            <Typography variant="subtitle2" component="span" color="text.secondary">
+              {role} · {year}
+            </Typography>
+          </Stack>
+
+          <Typography
+            variant={featured ? "h3" : "h4"}
+            component="h2"
+            color="text.primary"
+          >
+            {title}
+          </Typography>
+        </Box>
+      </Box>
+    </ProjectCard>
+  );
+}
+
 export default function Portfolio() {
+  // 0 means "nothing expanded"; project indices start at 1.
   const [projectIndex, setProjectIndex] = React.useState<number>(0);
 
-  async function scrollToPortfolio() {
-    const portfolioElement = document.getElementById("portfolio-section");
-    const hasChild = await portfolioElement?.hasChildNodes;
+  function handleSelect(index: number) {
+    const next = projectIndex === index ? 0 : index;
+    setProjectIndex(next);
 
-    if (portfolioElement && hasChild) {
-      const topTarget = portfolioElement.offsetTop;
-      portfolioElement.scrollIntoView({ behavior: "smooth" });
-      window.scrollTo({
-        top: topTarget,
-        behavior: "smooth",
+    if (next) {
+      // Let the details mount before scrolling to them.
+      window.requestAnimationFrame(() => {
+        document
+          .getElementById("portfolio-section")
+          ?.scrollIntoView({ behavior: "smooth", block: "start" });
       });
     }
   }
 
-  function handleIndexChange(index: number) {
-    setProjectIndex(index);
-    if (index) scrollToPortfolio();
-  }
-
   return (
-    <Container id="portfolio" sx={{ pt: { xs: 8, sm: 8 } }}>
-      {/* <Stack spacing={1} sx={{ mb: { xs: 4, sm: 6 } }}>
-        <Typography variant="h4" component="h2" color="text.primary" fontWeight={600}>
-          Selected Work
-        </Typography>
-        <Typography variant="body1" color="text.secondary" sx={{ maxWidth: 640 }}>
-          A look at platforms I&apos;ve designed and built, from internal dashboards to
-          device testing tools.
-        </Typography>
-      </Stack> */}
-      <Grid
-        container
-        spacing={{ xs: 3, md: 4 }}
-        sx={{
-          display: {
-            xs: "auto",
-          },
-        }}
-      >
-        {projects.map(({ title, subheader, description, image, show }, index) => {
-          if (show)
-            return (
-              <Grid item key={title} xs={12} md={6}>
-                <CardButton
-                  className={projectIndex === index ? "selected" : "selectable"}
-                  key={index}
-                  component={Button}
-                  onClick={() => handleIndexChange(index)}
-                >
-                  <Box sx={{ position: "relative", width: "100%", height: 320 }}>
-                    <Box
-                      className="portfolio-card-image"
-                      sx={{
-                        position: "absolute",
-                        inset: 0,
-                        transition: "transform 0.5s ease",
-                      }}
-                    >
-                      <Image
-                        src={image}
-                        fill
-                        sizes="(max-width: 564px) 100vw"
-                        style={{
-                          objectFit: "cover",
-                          objectPosition: "left top",
-                        }}
-                        alt={title}
-                        priority
-                      />
-                    </Box>
-                    <Box
-                      aria-hidden="true"
-                      sx={{
-                        position: "absolute",
-                        inset: 0,
-                        background:
-                          "linear-gradient(180deg, rgba(9,14,16,0) 42%, rgba(9,14,16,0.82) 100%)",
-                      }}
-                    />
-                    {projectIndex === index && (
-                      <Box
-                        sx={{
-                          position: "absolute",
-                          top: 16,
-                          left: 16,
-                          display: "flex",
-                          alignItems: "center",
-                          gap: 0.5,
-                          px: 1.25,
-                          py: 0.5,
-                          // borderRadius: 1,
-                          bgcolor: "primary.main",
-                          color: "primary.contrastText",
-                        }}
-                      >
-                        <CheckIcon sx={{ fontSize: 14 }} />
-                        <Typography
-                          variant="caption"
-                          sx={{
-                            fontWeight: 500,
-                            letterSpacing: 0.4,
-                            textTransform: "capitalize",
-                          }}
-                        >
-                          Viewing
-                        </Typography>
-                      </Box>
-                    )}
-                    {/* <Box
-                      sx={{
-                        position: "absolute",
-                        top: 16,
-                        right: 16,
-                        width: 36,
-                        height: 36,
-                        borderRadius: "50%",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        color: "#fff",
-                        background: "rgba(255, 255, 255, 0.16)",
-                        backdropFilter: "blur(8px)",
-                        transform:
-                          projectIndex === index ? "rotate(180deg)" : "rotate(0deg)",
-                        transition: "transform 0.3s ease",
-                      }}
-                    >
-                      <ArrowDownwardIcon sx={{ fontSize: 18 }} />
-                    </Box> */}
-                    <Box
-                      sx={{
-                        position: "absolute",
-                        left: 0,
-                        right: 0,
-                        bottom: 0,
-                        textAlign: "left",
-                        p: { xs: 2, sm: 2.5 },
-                      }}
-                    >
-                      <Typography
-                        component="span"
-                        variant="caption"
-                        sx={{
-                          display: "inline-block",
-                          mb: 1,
-                          px: 1.25,
-                          py: 0.25,
-                          // borderRadius: 1,
-                          fontWeight: 500,
-                          letterSpacing: 0.4,
-                          textTransform: "capitalize",
-                          color: "#fff",
-                          background: "rgba(255, 255, 255, 0.18)",
-                          backdropFilter: "blur(6px)",
-                        }}
-                      >
-                        {description} · {subheader}
-                      </Typography>
-                      <Typography
-                        color="#fff"
-                        variant="h5"
-                        component="p"
-                        sx={{
-                          fontWeight: 300,
-                          textTransform: "capitalize",
-                          textShadow: "0 2px 12px rgba(0,0,0,0.35)",
-                        }}
-                      >
-                        {title}
-                      </Typography>
-                    </Box>
-                  </Box>
-                </CardButton>
-              </Grid>
-            );
-          else return;
-        })}
-      </Grid>
-      <div id="portfolio-section">
-        <PortfolioDetails index={projectIndex} />
-      </div>
-    </Container>
+    <Box component="section" id="work" sx={{ scrollMarginTop: 80 }}>
+      <Container sx={{ pt: { xs: 10, md: 16 }, pb: { xs: 6, md: 8 } }}>
+        <Stack spacing={2.5} sx={{ mb: { xs: 6, md: 9 }, maxWidth: "44ch" }}>
+          <Typography variant="h6" component="p" color="text.secondary">
+            Work
+          </Typography>
+          {/* <Typography variant="h2" component="h2" color="text.primary">
+            Three platforms, up close.
+          </Typography> */}
+          <Typography variant="subtitle1" color="text.secondary">
+            Each one is a technical product with a real operational cost to getting the
+            interface wrong. Open any card to read the full case study.
+          </Typography>
+        </Stack>
+
+        <Grid container spacing={{ xs: 3, md: 4 }}>
+          {PROJECTS.map((project) => (
+            <Grid item key={project.title} xs={12} md={project.featured ? 12 : 6}>
+              <ProjectTile
+                project={project}
+                open={projectIndex === project.index}
+                onSelect={() => handleSelect(project.index)}
+              />
+            </Grid>
+          ))}
+        </Grid>
+      </Container>
+
+      <PortfolioDetails index={projectIndex} />
+    </Box>
   );
 }

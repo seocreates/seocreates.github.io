@@ -1,162 +1,115 @@
 import * as React from "react";
-import Image from "next/image";
-import Grid from "@mui/material/Grid";
-import Typography from "@mui/material/Typography";
-import { ReadableStack } from "./Portfolio";
-import Stack from "@mui/material/Stack";
+import {
+  CaseStudyLayout,
+  CaseStudySection,
+  Figure,
+  Note,
+  P,
+  Point,
+  Section,
+} from "./CaseStudy";
 import remoteDeviceInteraction from "images/portfolio/remote-device-interaction.png";
 import remoteDeviceInteractionShell from "images/portfolio/remote-device-interaction-shell.png";
 
+const SECTIONS: CaseStudySection[] = [
+  { id: "remote-overview", label: "Overview" },
+  { id: "remote-role", label: "Role" },
+  { id: "remote-outcome", label: "Outcome" },
+  { id: "remote-platform", label: "Platform" },
+];
+
 export default function RemoteDevice() {
   return (
-    <Grid
-      container
-      id="remote-device"
-      sx={{ mt: { xs: 1, sm: 2 }, width: "100%", mb: 4 }}
-    >
-      <ReadableStack>
-        <Typography variant="h4" component="h2" className="title" color="text.primary">
-          Remote Device Platform
-        </Typography>
-        <Typography variant="body1" color="text.primary">
-          Client: Internal Product Developers
-          <br />
-          <u>
-            Sensitive materials have been redacted for Non-Disclosure Agreement
-            purposes.
-          </u>
-        </Typography>
+    <CaseStudyLayout sections={SECTIONS}>
+      <Section
+        id="remote-overview"
+        index={1}
+        eyebrow="Overview"
+        title="Real devices, reachable from anywhere"
+        rule={false}
+      >
+        <Note>
+          Client: internal product developers. Sensitive materials have been redacted
+          for Non-Disclosure Agreement purposes.
+        </Note>
 
-        <Stack spacing={2} direction={"column"}>
-          <Typography variant="h6" component="h3" color="text.secondary">
-            Background
-          </Typography>
-          <Typography variant="body1" color="text.primary">
-            Our service-product developers require a holistic platform to test
-            their products on different operating systems and device variants
-            prior to deployment. As service-products increase in complexity and
-            market devices continue to release OS updates, it is crucial to
-            maintain a viable set of production-targeted devices, monitor and
-            optimize performance, and remediate code vulnerabilities.
-          </Typography>
-          <Typography variant="body1" color="text.primary">
-            The remote device platform serves our internal product developers
-            and quality assurance testers to build, debug and continuously test
-            their products by remotely accessing real devices.
-          </Typography>
-        </Stack>
+        <P>
+          Our service-product developers require a holistic platform to test their
+          products on different operating systems and device variants prior to
+          deployment. As service products increase in complexity and market devices
+          continue to release OS updates, it is crucial to maintain a viable set of
+          production-targeted devices, monitor and optimize performance, and remediate
+          code vulnerabilities.
+        </P>
+        <P>
+          The remote device platform serves our internal product developers and quality
+          assurance testers, letting them build, debug, and continuously test their
+          products by remotely accessing real devices.
+        </P>
+      </Section>
 
-        <Stack spacing={2} direction={"column"}>
-          <Typography variant="h6" component="h3" color="text.secondary">
-            Responsibilities
-          </Typography>
-          <Typography variant="body1" color="text.primary">
-            Collaborated with internal developers and managers to gather feature
-            requests and technical requirements to ensure the platform supports
-            all product teams and operating systems.
-          </Typography>
-          <Typography variant="body1" color="text.primary">
-            Communicated the product vision to all stakeholders to ensure the
-            platform is sustainable for continuous deployment in an air-gapped
-            environment.
-          </Typography>
-          <Typography variant="body1" color="text.primary">
-            Synthesized user research to prioritize feature requests for our
-            MVP and designed high-fidelity prototypes to communicate with the
-            team.
-          </Typography>
-          <Typography variant="body1" color="text.primary">
-            <b>Primarily</b> designed, developed, and maintained the front-end
-            using Next.js, React TS, and gRPC-Web. Dockerized our platform to
-            run on a cloud provider.
-          </Typography>
-        </Stack>
-        <Stack spacing={3} direction={"column"} mb={{ sm: 5, md: 0 }}>
-          <Typography variant="h6" component="h3" color="text.secondary">
-            Outcomes
-          </Typography>
-          <div>
-            <Typography
-              variant="body1"
-              fontWeight="bold"
-              color="text.secondary"
-            >
-              Support Product Development Cycles
-            </Typography>
-            <Typography variant="body1" color="text.primary">
-              A holistic platform to connect real interactable devices to
-              developers to perform automated tests, generate reports, and debug
-              products.
-            </Typography>
-          </div>
-          <div>
-            <Typography
-              variant="body1"
-              fontWeight="bold"
-              color="text.secondary"
-            >
-              Improve Speed of Product Delivery
-            </Typography>
-            <Typography variant="body1" color="text.primary">
-              Reduce the steps to configure products for deployment by
-              simulating services across real device variants.
-            </Typography>
-          </div>
-          <div>
-            <Typography
-              variant="body1"
-              fontWeight="bold"
-              color="text.secondary"
-            >
-              Efficiency in User Experience
-            </Typography>
-            <Typography variant="body1" color="text.primary">
-              Connect device variants according to OS-focused developer profile.
-            </Typography>
-          </div>
-        </Stack>
+      <Section
+        id="remote-role"
+        index={2}
+        eyebrow="My Role"
+        title="Designer and primary front-end developer"
+      >
+        <P>
+          Collaborated with internal developers and managers to gather feature requests
+          and technical requirements, ensuring the platform supports all product teams
+          and operating systems.
+        </P>
+        <P>
+          Communicated the product vision to all stakeholders to ensure the platform is
+          sustainable for continuous deployment in an air-gapped environment.
+        </P>
+        <P>
+          Synthesized user research to prioritize feature requests for our MVP and
+          designed high-fidelity prototypes to communicate with the team.
+        </P>
+        <P>
+          Primarily designed, developed, and maintained the front-end using Next.js,
+          React TS, and gRPC-Web, and dockerized the platform to run on a cloud
+          provider.
+        </P>
+      </Section>
 
-        <Grid container item id="remote-device">
-          <Grid item xs={12} p={0} mb={5}>
-            <Image
-              src={remoteDeviceInteraction}
-              width={0}
-              height={0}
-              sizes="(max-width: 700px) 100vw"
-              style={{ objectFit: "contain", width: "100%", height: "auto" }}
-              alt="remote device interaction page"
-              loading="lazy"
-            />
-            <Typography
-              variant="caption"
-              fontStyle={"italic"}
-              color="text.secondary"
-            >
-              Remote Device Platform
-            </Typography>
-          </Grid>
+      <Section
+        id="remote-outcome"
+        index={3}
+        eyebrow="Outcome"
+        title="Shorter cycles, fewer configuration steps"
+      >
+        <Point label="Support product development cycles">
+          A holistic platform connecting real, interactable devices to developers so
+          they can run automated tests, generate reports, and debug products.
+        </Point>
+        <Point label="Improve speed of product delivery">
+          Reduce the steps to configure products for deployment by simulating services
+          across real device variants.
+        </Point>
+        <Point label="Efficiency in user experience">
+          Connect device variants according to an OS-focused developer profile.
+        </Point>
+      </Section>
 
-          <Grid item xs={12} p={0}>
-            <Image
-              src={remoteDeviceInteractionShell}
-              width={0}
-              height={0}
-              sizes="(max-width: 700px) 100vw"
-              style={{ objectFit: "contain", width: "100%", height: "auto" }}
-              alt="remote device interaction shell and logs"
-              loading="lazy"
-            />
-            <Typography
-              variant="caption"
-              fontStyle={"italic"}
-              color="text.secondary"
-            >
-              Remote Device Platform with Resizable Device Log Panel and Exec
-              Shell
-            </Typography>
-          </Grid>
-        </Grid>
-      </ReadableStack>
-    </Grid>
+      <Section
+        id="remote-platform"
+        index={4}
+        eyebrow="The Platform"
+        title="Device, logs, and shell in one workspace"
+      >
+        <Figure
+          src={remoteDeviceInteraction}
+          alt="remote device interaction page"
+          caption="Remote device platform"
+        />
+        <Figure
+          src={remoteDeviceInteractionShell}
+          alt="remote device interaction shell and logs"
+          caption="Resizable device log panel and exec shell"
+        />
+      </Section>
+    </CaseStudyLayout>
   );
 }

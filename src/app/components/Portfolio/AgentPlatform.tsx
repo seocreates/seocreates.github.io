@@ -1,10 +1,12 @@
 import * as React from "react";
-import Image from "next/image";
-import Grid from "@mui/material/Grid";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import { ReadableStack } from "./Portfolio";
-import Stack from "@mui/material/Stack";
+import {
+  CaseStudyLayout,
+  CaseStudySection,
+  Figure,
+  P,
+  Point,
+  Section,
+} from "./CaseStudy";
 import agentBuilder1 from "images/portfolio/ai-platform/agent-builder-1.png";
 import agentBuilderModel1 from "images/portfolio/ai-platform/agent-builder-model-1.png";
 import agentBuilderPreviewChat1 from "images/portfolio/ai-platform/agent-builder-preview-chat-1.png";
@@ -14,220 +16,141 @@ import agentExecution1 from "images/portfolio/ai-platform/agent-execution-1.png"
 import agentExecutionConfidenceOverview from "images/portfolio/ai-platform/agent-execution-confidence-overview.png";
 import agentExecutionConfidenceReasoning from "images/portfolio/ai-platform/agent-execution-confidence-reasoning.png";
 
+const SECTIONS: CaseStudySection[] = [
+  { id: "agent-overview", label: "Overview" },
+  { id: "agent-challenge", label: "Challenge" },
+  { id: "agent-role", label: "Role" },
+  { id: "agent-builder", label: "Builder" },
+  { id: "agent-execution", label: "Execution" },
+];
+
 export default function AgentPlatform() {
   return (
-    <Grid container id="agent-platform" sx={{ mt: { xs: 1, sm: 2 }, mb: 4 }}>
-      <Grid item xs={12}>
-        <ReadableStack mb={5}>
-          <Typography variant="h4" component="h2" className="title" color="text.primary">
-            Agent Platform
-          </Typography>
+    <CaseStudyLayout sections={SECTIONS}>
+      <Section
+        id="agent-overview"
+        index={1}
+        eyebrow="Overview"
+        title="An orchestration platform for agents in production"
+        rule={false}
+      >
+        <P>
+          An AI orchestration platform: customers connect their own data, build agents
+          on top of it, and run those agents in production with confidence.
+        </P>
+      </Section>
 
-          <Stack spacing={2} direction={"column"}>
-            <Typography variant="h6" component="h3" color="text.secondary">
-              Background
-            </Typography>
-            <Typography variant="body1" color="text.primary">
-              An AI orchestration platform: customers connect their own data, build agents
-              on top of it, and run those agents in production with confidence.
-            </Typography>
-            <Typography variant="body1" color="text.primary">
-              An agent&apos;s configuration is the smallest, highest-consequence surface
-              in the product: one field decides what an agent knows, what it&apos;s
-              allowed to do, and how it behaves for every conversation downstream. So we
-              put the test chat and the configuration in one viewport, permanently, and
-              made every edit provable before it ships.
-            </Typography>
-          </Stack>
+      <Section
+        id="agent-challenge"
+        index={2}
+        eyebrow="The Challenge"
+        title="The smallest surface with the largest blast radius"
+      >
+        <P>
+          An agent&apos;s configuration is the smallest, highest-consequence surface in
+          the product: one field decides what an agent knows, what it&apos;s allowed to
+          do, and how it behaves for every conversation downstream.
+        </P>
+        <P>
+          So we put the test chat and the configuration in one viewport, permanently,
+          and made every edit provable before it ships.
+        </P>
+      </Section>
 
-          <Stack spacing={2} direction={"column"}>
-            <Typography variant="h6" component="h3" color="text.secondary">
-              Responsibilities
-            </Typography>
-            <Typography variant="body1" color="text.primary">
-              Led end-to-end product design for the platform, owning the experience from
-              discovery through production across agent configuration, knowledge base
-              management, tool integration, and response presentation.
-            </Typography>
-            <Typography variant="body1" color="text.primary">
-              Operated in a fast-paced startup environment, shipping improvements weekly.
-              Analyzed user sessions in LogRocket to surface usability issues and
-              navigation friction, then translated those findings into prioritized design
-              work.
-            </Typography>
-            <Typography variant="body1" color="text.primary">
-              Partnered closely with back-end engineers to turn product strategy into
-              shipped experiences, working directly in React, TypeScript, Tailwind CSS,
-              and Shadcn UI.
-            </Typography>
-            <Typography variant="body1" color="text.secondary" fontStyle="italic">
-              More coming soon.
-            </Typography>
-          </Stack>
-        </ReadableStack>
-      </Grid>
+      <Section
+        id="agent-role"
+        index={3}
+        eyebrow="My Role"
+        title="Product designer, discovery through production"
+      >
+        <P>
+          Led end-to-end product design for the platform, owning the experience from
+          discovery through production across agent configuration, knowledge base
+          management, tool integration, and response presentation.
+        </P>
+        <P>
+          Operated in a fast-paced startup environment, shipping improvements weekly.
+          Analyzed user sessions in LogRocket to surface usability issues and navigation
+          friction, then translated those findings into prioritized design work.
+        </P>
+        <P>
+          Partnered closely with back-end engineers to turn product strategy into
+          shipped experiences, working directly in React, TypeScript, Tailwind CSS, and
+          Shadcn UI.
+        </P>
+      </Section>
 
-      <Grid item xs={12}>
-        <Stack id="agent-builder" spacing={4} mb={5}>
-          <Box>
-            <Image
-              src={agentBuilder1}
-              width={0}
-              height={0}
-              sizes="100vw"
-              style={{
-                objectFit: "contain",
-                width: "100%",
-                height: "auto",
-                borderRadius: 16,
-              }}
-              alt="agent builder with test chat and configuration in one viewport"
-              loading="lazy"
-            />
-            <Typography variant="caption" fontStyle={"italic"} color="text.secondary">
-              Test Chat and Configuration in One Viewport
-            </Typography>
-          </Box>
-          <Box>
-            <Image
-              src={agentBuilderModel1}
-              width={0}
-              height={0}
-              sizes="100vw"
-              style={{
-                objectFit: "contain",
-                width: "100%",
-                height: "auto",
-                borderRadius: 16,
-              }}
-              alt="choosing a primary model with capabilities and pricing visible in the picker"
-              loading="lazy"
-            />
-            <Typography variant="caption" fontStyle={"italic"} color="text.secondary">
-              Choosing a Primary Model with Capabilities and Pricing Visible
-            </Typography>
-          </Box>
-          <Box>
-            <Image
-              src={agentBuilderPreviewChat1}
-              width={0}
-              height={0}
-              sizes="100vw"
-              style={{
-                objectFit: "contain",
-                width: "100%",
-                height: "auto",
-                borderRadius: 16,
-              }}
-              alt="testing agent responses against unsaved configuration changes with a confidence score breakdown"
-              loading="lazy"
-            />
-            <Typography variant="caption" fontStyle={"italic"} color="text.secondary">
-              Testing Responses and Confidence Scores Before Saving
-            </Typography>
-          </Box>
-          <Box>
-            <Image
-              src={agentBuilderPreviewGeneratingArtifact}
-              width={0}
-              height={0}
-              sizes="100vw"
-              style={{
-                objectFit: "contain",
-                width: "100%",
-                height: "auto",
-                borderRadius: 16,
-              }}
-              alt="agent generating a structured csv artifact in real time during testing"
-              loading="lazy"
-            />
-            <Typography variant="caption" fontStyle={"italic"} color="text.secondary">
-              Generating and Streaming a Structured Artifact in Real Time
-            </Typography>
-          </Box>
-        </Stack>
-      </Grid>
+      <Section
+        id="agent-builder"
+        index={4}
+        eyebrow="Agent Builder"
+        title="Configure on the left, prove it on the right"
+      >
+        <P>
+          Every configuration change can be tested against the unsaved state before it
+          reaches a single customer conversation — the model choice, the knowledge it
+          draws on, and the shape of what it returns.
+        </P>
 
-      <Grid item xs={12}>
-        <Stack id="agent-execution" spacing={4}>
-          <Box>
-            <Image
-              src={agentExecutionEmpty}
-              width={0}
-              height={0}
-              sizes="100vw"
-              style={{
-                objectFit: "contain",
-                width: "100%",
-                height: "auto",
-                borderRadius: 16,
-              }}
-              alt="empty execution view for starting a new conversation with a published agent"
-              loading="lazy"
-            />
-            <Typography variant="caption" fontStyle={"italic"} color="text.secondary">
-              Starting a New Conversation with a Published Agent
-            </Typography>
-          </Box>
-          <Box>
-            <Image
-              src={agentExecution1}
-              width={0}
-              height={0}
-              sizes="100vw"
-              style={{
-                objectFit: "contain",
-                width: "100%",
-                height: "auto",
-                borderRadius: 16,
-              }}
-              alt="execution view for a published agent with conversation overview, confidence score, sources, and artifacts"
-              loading="lazy"
-            />
-            <Typography variant="caption" fontStyle={"italic"} color="text.secondary">
-              Conversation Overview with Confidence Score, Sources, and Artifacts
-            </Typography>
-          </Box>
-          <Box>
-            <Image
-              src={agentExecutionConfidenceOverview}
-              width={0}
-              height={0}
-              sizes="100vw"
-              style={{
-                objectFit: "contain",
-                width: "100%",
-                height: "auto",
-                borderRadius: 16,
-              }}
-              alt="confidence score overview broken down across judgment and statistical modules"
-              loading="lazy"
-            />
-            <Typography variant="caption" fontStyle={"italic"} color="text.secondary">
-              Confidence Score Breakdown Across Judgment and Statistical Modules
-            </Typography>
-          </Box>
-          <Box>
-            <Image
-              src={agentExecutionConfidenceReasoning}
-              width={0}
-              height={0}
-              sizes="100vw"
-              style={{
-                objectFit: "contain",
-                width: "100%",
-                height: "auto",
-                borderRadius: 16,
-              }}
-              alt="per-turn reasoning and analysis behind an individual confidence score module"
-              loading="lazy"
-            />
-            <Typography variant="caption" fontStyle={"italic"} color="text.secondary">
-              Per-Turn Reasoning Behind Each Confidence Score
-            </Typography>
-          </Box>
-        </Stack>
-      </Grid>
-    </Grid>
+        <Figure
+          src={agentBuilder1}
+          alt="agent builder with test chat and configuration in one viewport"
+          caption="Test chat and configuration in one viewport"
+        />
+        <Figure
+          src={agentBuilderModel1}
+          alt="choosing a primary model with capabilities and pricing visible in the picker"
+          caption="Choosing a primary model with capabilities and pricing visible"
+        />
+        <Figure
+          src={agentBuilderPreviewChat1}
+          alt="testing agent responses against unsaved configuration changes with a confidence score breakdown"
+          caption="Testing responses and confidence scores before saving"
+        />
+        <Figure
+          src={agentBuilderPreviewGeneratingArtifact}
+          alt="agent generating a structured csv artifact in real time during testing"
+          caption="Generating and streaming a structured artifact in real time"
+        />
+      </Section>
+
+      <Section
+        id="agent-execution"
+        index={5}
+        eyebrow="Execution"
+        title="Confidence you can open up and inspect"
+      >
+        <P>
+          Once an agent is published, every conversation carries its own evidence: the
+          sources it drew on, the artifacts it produced, and a confidence score that can
+          be opened down to the reasoning behind each module.
+        </P>
+
+        <Figure
+          src={agentExecutionEmpty}
+          alt="empty execution view for starting a new conversation with a published agent"
+          caption="Starting a new conversation with a published agent"
+        />
+        <Figure
+          src={agentExecution1}
+          alt="execution view for a published agent with conversation overview, confidence score, sources, and artifacts"
+          caption="Conversation overview with confidence score, sources, and artifacts"
+        />
+        <Figure
+          src={agentExecutionConfidenceOverview}
+          alt="confidence score overview broken down across judgment and statistical modules"
+          caption="Confidence score breakdown across judgment and statistical modules"
+        />
+        <Figure
+          src={agentExecutionConfidenceReasoning}
+          alt="per-turn reasoning and analysis behind an individual confidence score module"
+          caption="Per-turn reasoning behind each confidence score"
+        />
+
+        <Point label="More coming soon">
+          This case study is still being written up as the platform ships.
+        </Point>
+      </Section>
+    </CaseStudyLayout>
   );
 }

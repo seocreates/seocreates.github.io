@@ -2,13 +2,13 @@ import type { Metadata } from "next";
 import StoreProvider from "./storeProvider";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
 import Analytics from "./components/analytics";
-import { activeFont } from "./fonts";
+import { activeFont, displayFont } from "./fonts";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Seo UI/UX Engineer Portfolio",
+  title: "Victoria — UI/UX Designer & Developer",
   description:
-    "Seo UI/UX Engineer Design Portfolio | I work at the intersection of ui/ux design and development.  I enjoy problem-solving and building ideas into digital products.",
+    "I make complex products feel obvious. UI/UX design and front-end development for technical platforms, operational dashboards, remote device tooling, and AI agent systems.",
 };
 
 export default function RootLayout({
@@ -18,7 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <StoreProvider>
-      <html lang="en" className={activeFont.variable}>
+      <html lang="en" className={`${activeFont.variable} ${displayFont.variable}`}>
         <head>
           <Analytics />
         </head>
