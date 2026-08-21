@@ -1,9 +1,15 @@
 import * as React from "react";
-import Image from "next/image";
-import Grid from "@mui/material/Grid";
-import Typography from "@mui/material/Typography";
-import { ReadableStack } from "./Portfolio";
-import Stack from "@mui/material/Stack";
+import {
+  CaseStudyLayout,
+  CaseStudySection,
+  Figure,
+  FigureRow,
+  Note,
+  P,
+  Point,
+  Section,
+  SubSection,
+} from "./CaseStudy";
 import dashboardFinal from "images/portfolio/dashboard-final-data.png";
 import dashboardFinalEditable from "images/portfolio/dashboard-editable-final.png";
 import dashboardMasonary from "images/portfolio/dashboard-original-masonary.png";
@@ -16,422 +22,195 @@ import wireframeDashboard1728 from "images/portfolio/wireframe-dashboard-numbere
 import wireframeComponent from "images/portfolio/wireframe-dashboard-components.png";
 import wireframeComponent1728 from "images/portfolio/wireframe-dashboard-components-1728.png";
 
+const SECTIONS: CaseStudySection[] = [
+  { id: "dashboard-overview", label: "Overview" },
+  { id: "dashboard-problem", label: "Problem" },
+  { id: "dashboard-iteration", label: "Iteration" },
+  { id: "dashboard-solution", label: "Solution" },
+  { id: "dashboard-outcome", label: "Outcome" },
+];
+
 export default function Dashboard() {
   return (
-    <Grid container id="dashboard" sx={{ mt: { xs: 1, sm: 2 }, mb: 4 }}>
-      <Grid item xs={12}>
-        <ReadableStack mb={5}>
-          <Typography variant="h4" component="h2" className="title" color="text.primary">
-            Core Dashboard
-          </Typography>
-          <Typography
-            variant="body1"
-            color="text.primary"
-            sx={{ textDecoration: "underline" }}
-          >
-            Illustrations are recreated from the original design as visual aids
-            and sensitive materials have been redacted for Non-Disclosure
-            Agreement purposes.
-          </Typography>
-          <Stack spacing={2} direction={"column"}>
-            <Typography variant="h6" component="h3" color="text.secondary">
-              Background
-            </Typography>
-            <Typography variant="body1" color="text.primary">
-              As the core-product expands its suite of service-products, the
-              complexity of provisioning individual product&apos;s capabilities
-              becomes increasingly unsustainable.
-            </Typography>
-            <Typography variant="body1" color="text.primary">
-              The core-product laid the front-end foundation and continues to
-              supply development tools shared throughout all service-products.
-              With shared code, the service-product teams are responsible for
-              developing supplemental components that provide direct access to
-              their capabilities. Without standardization, this implementation
-              process inevitably creates disjointed components that primarily
-              affect the long-term user experience in an operational
-              environment.
-            </Typography>
-          </Stack>
-        </ReadableStack>
-      </Grid>
-
-      <Grid
-        container
-        item
-        id="original-dashboard"
-        direction={"row"}
-        spacing={1}
-        my={5}
+    <CaseStudyLayout sections={SECTIONS}>
+      <Section
+        id="dashboard-overview"
+        index={1}
+        eyebrow="Overview"
+        title="One dashboard, many service products"
+        rule={false}
       >
-        <Grid item xs={12} sm={12} md={4}>
-          <Stack spacing={2}>
-            <Typography variant="h6" component="h3" color="text.secondary">
-              Problem
-            </Typography>
-            <Typography variant="body1" color="text.primary">
-              The original core-product dashboard was designed in a masonry
-              layout (commonly referred to as the Pinterest Style Layout) to
-              accommodate the full content that the core-product and
-              service-product&apos;s capabilities asynchronously render. The
-              problem was easily identifiable as active items would shift to the
-              shortest column and aggregated content would reposition according
-              to streaming data.
-            </Typography>
-          </Stack>
-        </Grid>
+        <Note>
+          Illustrations are recreated from the original design as visual aids, and
+          sensitive materials have been redacted for Non-Disclosure Agreement purposes.
+        </Note>
 
-        <Grid item xs={12} sm={6} md={4} id="original-dashboard-image">
-          <Image
+        <P>
+          As the core product expands its suite of service products, the complexity of
+          provisioning each product&apos;s capabilities becomes increasingly
+          unsustainable.
+        </P>
+        <P>
+          The core product laid the front-end foundation and continues to supply
+          development tools shared throughout all service products. With shared code,
+          the service-product teams are responsible for developing supplemental
+          components that provide direct access to their capabilities. Without
+          standardization, this implementation process inevitably creates disjointed
+          components that primarily affect the long-term user experience in an
+          operational environment.
+        </P>
+      </Section>
+
+      <Section
+        id="dashboard-problem"
+        index={2}
+        eyebrow="The Problem"
+        title="A layout that moved the content out from under you"
+      >
+        <P>
+          The original core-product dashboard was designed in a masonry layout (commonly
+          referred to as the Pinterest style layout) to accommodate the full content
+          that the core product and service products render asynchronously. The problem
+          was easily identifiable: active items would shift to the shortest column, and
+          aggregated content would reposition according to streaming data.
+        </P>
+
+        <FigureRow>
+          <Figure
             src={dashboardMasonary}
-            width={0}
-            height={0}
-            sizes="(max-width: 700px) 100vw"
-            style={{ objectFit: "contain", width: "100%", height: "auto" }}
             alt="original dashboard layout"
-            loading="lazy"
+            caption="Dashboard in masonry layout"
           />
-          <Typography
-            variant="caption"
-            fontStyle={"italic"}
-            color="text.secondary"
-          >
-            Dashboard in Masonry Layout
-          </Typography>
-        </Grid>
-        <Grid item xs={12} sm={6} md={4} id="original-dashboard-images">
-          <Image
+          <Figure
             src={dashboardMasonary1728}
-            width={0}
-            height={0}
-            sizes="(max-width: 700px) 100vw"
-            style={{ objectFit: "contain", width: "100%", height: "auto" }}
             alt="original dashboard layout resize"
-            loading="lazy"
+            caption="Reposition on resized viewport with side panel"
           />
-          <Typography
-            variant="caption"
-            fontStyle={"italic"}
-            color="text.secondary"
-          >
-            Reposition on Resized Viewport with Side Panel
-          </Typography>
-        </Grid>
-      </Grid>
+        </FigureRow>
+      </Section>
 
-      <ReadableStack mt={5}>
-        <Stack spacing={2} direction={"column"}>
-          <Typography variant="h6" component="h3" color="text.secondary">
-            First Iteration
-          </Typography>
-          <Typography variant="body1" color="text.primary">
-            The first proof of concept aimed to facilitate preliminary
-            discussions around a proposed solution: a fixed height with custom
-            reordering. A modular grid layout arranges items with consistent
-            columns and rows
-            to maintain a uniform aesthetic across all dashboards reflecting
-            different services. The new design will allow users to easily scan
-            items, and remember the order and location of high-interest content.
-            The custom reorder feature will provide the option to prioritize the
-            array of items according to individual specifications.
-          </Typography>
-          <Typography variant="body1" color="text.primary">
-            The main disadvantage is the dynamic content length. With a fixed
-            height, sparse content leaves wasted white space, while content
-            that exceeds the fixed height gets truncated, obscuring vital data
-            and potentially impeding operational performance. This first
-            iteration reintroduced concerns that the original masonry layout
-            had already solved.
-          </Typography>
-        </Stack>
-      </ReadableStack>
-
-      <Grid
-        container
-        item
-        id="initial-prototype"
-        direction={"row"}
-        spacing={1}
-        mt={2}
-        mb={5}
+      <Section
+        id="dashboard-iteration"
+        index={3}
+        eyebrow="First Iteration"
+        title="Fixed height solved one problem and reopened another"
       >
-        <Grid item xs={12} sm={12} md={4} id="first-dashboard-prototype">
-          <Image
+        <P>
+          The first proof of concept aimed to facilitate preliminary discussions around
+          a proposed solution: a fixed height with custom reordering. A modular grid
+          layout arranges items with consistent columns and rows to maintain a uniform
+          aesthetic across all dashboards reflecting different services. The new design
+          would let users easily scan items and remember the order and location of
+          high-interest content, while custom reordering provided the option to
+          prioritize items according to individual specifications.
+        </P>
+        <P>
+          The main disadvantage is dynamic content length. With a fixed height, sparse
+          content leaves wasted white space, while content that exceeds the fixed height
+          gets truncated — obscuring vital data and potentially impeding operational
+          performance. This first iteration reintroduced concerns that the original
+          masonry layout had already solved.
+        </P>
+
+        <FigureRow>
+          <Figure
             src={dashboardFirstPrototype}
-            width={0}
-            height={0}
-            sizes="(max-width: 700px) 100vw"
-            style={{ objectFit: "contain", width: "100%", height: "auto" }}
             alt="first dashboard prototype"
-            loading="lazy"
+            caption="Default dashboard in modular grid layout"
           />
-          <Typography
-            variant="caption"
-            fontStyle={"italic"}
-            color="text.secondary"
-          >
-            Default Dashboard in Modular Grid Layout
-          </Typography>
-        </Grid>
-        <Grid item xs={12} sm={12} md={4} id="first-dashboard-prototype">
-          <Image
+          <Figure
             src={dashboardFirstPrototype1728}
-            width={0}
-            height={0}
-            sizes="(max-width: 700px) 100vw"
-            style={{ objectFit: "contain", width: "100%", height: "auto" }}
             alt="first dashboard prototype resized"
-            loading="lazy"
+            caption="Grid wrapping on resized viewport with side panel"
           />
-          <Typography
-            variant="caption"
-            fontStyle={"italic"}
-            color="text.secondary"
-          >
-            Grid Wrapping on Resized Viewport with Side Panel
-          </Typography>
-        </Grid>
-        <Grid item xs={12} sm={12} md={4} id="first-dashboard-prototype">
-          <Image
+          <Figure
             src={dashboardFirstPrototypeReorder}
-            width={0}
-            height={0}
-            sizes="(max-width: 700px) 100vw"
-            style={{ objectFit: "contain", width: "100%", height: "auto" }}
             alt="first dashboard prototype reordered"
-            loading="lazy"
+            caption="Custom content reorder"
           />
-          <Typography
-            variant="caption"
-            fontStyle={"italic"}
-            color="text.secondary"
-          >
-            Custom Content Reorder
-          </Typography>
-        </Grid>
-      </Grid>
+        </FigureRow>
+      </Section>
 
-      <ReadableStack mt={2}>
-        <Stack spacing={2} direction={"column"}>
-          <Typography variant="h6" component="h3" color="text.secondary">
-            Conclusion
-          </Typography>
-          <Typography variant="body1" color="text.primary">
-            To address the concerns of dynamic content length in addition to the
-            masonry layout problem, the design needed certain flexibility with
-            controlled dimensions.
-          </Typography>
-          <Typography variant="body1" color="text.primary">
-            The final dashboard design uses a modular grid layout that consists
-            of 2 by 2 arrays. Each array holds up to four small components, two
-            medium components, or one large component. The size variations
-            accommodate all data content and provide dashboard customization to
-            adjust high-interest content in accordance with operational needs.
-          </Typography>
-        </Stack>
-      </ReadableStack>
-      <Grid
-        container
-        item
-        id="wireframe"
-        direction={"row"}
-        spacing={1}
-        mt={2}
-        mb={0}
-        sx={{ display: "flex", flexFlow: "row" }}
+      <Section
+        id="dashboard-solution"
+        index={4}
+        eyebrow="The Solution"
+        title="Flexibility inside controlled dimensions"
       >
-        <Grid item id="final-wireframe">
-          <Image
-            src={wireframeDashboard}
-            width={0}
-            height={0}
-            sizes="(max-width: 700px) 100vw"
-            style={{ objectFit: "contain", width: "100%", height: "100%" }}
-            alt="final wireframe"
-            loading="lazy"
-          />
-        </Grid>
-        <Grid item id="final-wireframe">
-          <Image
-            src={wireframeDashboard1728}
-            width={0}
-            height={0}
-            sizes="(max-width: 700px) 100vw"
-            style={{ objectFit: "contain", width: "100%", height: "100%" }}
-            alt="final wireframe resized"
-            loading="lazy"
-          />
-        </Grid>
-      </Grid>
-      <Typography variant="caption" fontStyle={"italic"} color="text.secondary">
-        2 by 2 Array Grid Layout
-      </Typography>
+        <P>
+          To address dynamic content length in addition to the masonry layout problem,
+          the design needed a certain flexibility with controlled dimensions.
+        </P>
+        <P>
+          The final dashboard design uses a modular grid layout that consists of 2 by 2
+          arrays. Each array holds up to four small components, two medium components,
+          or one large component. The size variations accommodate all data content and
+          provide dashboard customization to adjust high-interest content in accordance
+          with operational needs.
+        </P>
 
-      <ReadableStack mt={5} mb={2}>
-        <Typography variant="body1" color="text.primary">
-          The 2 by 2 arrays are flexible containers in width and consistent in
-          height. The grid layout and the items within the 2 by 2 array should
-          flow from left to right and top to bottom. Designed around the common
-          screen resolution of 1920 x 1080, the dashboard viewport should
-          maintain full visibility of two rows and a glimpse of the row
-          underneath to indicate further content.
-        </Typography>
-      </ReadableStack>
+        <FigureRow>
+          <Figure src={wireframeDashboard} alt="final wireframe" />
+          <Figure src={wireframeDashboard1728} alt="final wireframe resized" />
+        </FigureRow>
 
-      <Grid
-        container
-        item
-        id="wireframe"
-        direction={"row"}
-        spacing={1}
-        mt={2}
-        mb={0}
-        sx={{ display: "flex", flexFlow: "row" }}
+        <SubSection title="How the array behaves">
+          <P>
+            The 2 by 2 arrays are flexible containers in width and consistent in height.
+            The grid layout and the items within each array flow from left to right and
+            top to bottom. Designed around the common screen resolution of 1920 x 1080,
+            the dashboard viewport maintains full visibility of two rows and a glimpse
+            of the row underneath to indicate further content.
+          </P>
+
+          <FigureRow>
+            <Figure
+              src={wireframeComponent1728}
+              alt="final wireframe components resized"
+            />
+            <Figure src={wireframeComponent} alt="final wireframe components" />
+          </FigureRow>
+        </SubSection>
+      </Section>
+
+      <Section
+        id="dashboard-outcome"
+        index={5}
+        eyebrow="Outcome"
+        title="A layout that holds still and scales across teams"
       >
-        <Grid item id="final-wireframe">
-          <Image
-            src={wireframeComponent1728}
-            width={0}
-            height={0}
-            sizes="(max-width: 700px) 100vw"
-            style={{ objectFit: "contain", width: "100%", height: "100%" }}
-            alt="final wireframe components resized"
-            loading="lazy"
-          />
-        </Grid>
-        <Grid item id="final-wireframe">
-          <Image
-            src={wireframeComponent}
-            width={0}
-            height={0}
-            sizes="(max-width: 700px) 100vw"
-            style={{ objectFit: "contain", width: "100%", height: "100%" }}
-            alt="final wireframe components"
-            loading="lazy"
-          />
-        </Grid>
-      </Grid>
+        <Point label="Establish a visual hierarchy with a custom dashboard">
+          The size variations establish a visual hierarchy and recallable content
+          placement. The end user can customize and prioritize content to adapt to
+          operational needs, and custom dashboards can be saved as templates and reused
+          on instances of a service product.
+        </Point>
+        <Point label="Consistency in user experience">
+          The 2 by 2 array grid layout promotes uniformity across different
+          service-product dashboards to help users recollect the location of content in
+          a linear order and navigate aggregated content.
+        </Point>
+        <Point label="Unified components for product developers">
+          The structured layout helps not only end users but service-product developers,
+          who build dashboard components using controlled size-variation templates
+          provided by the core-product team.
+        </Point>
+        <Point label="Improve content readability and operational efficiency">
+          The grid layout enhances readability, making it easier to scan aligned
+          content.
+        </Point>
 
-      <Typography
-        mb={5}
-        variant="caption"
-        fontStyle={"italic"}
-        color="text.secondary"
-      >
-        Content Placement in 2 by 2 Array Grid Layout
-      </Typography>
-
-      <ReadableStack mt={2}>
-        <Stack spacing={3} direction={"column"} mb={{ sm: 5, md: 0 }}>
-          <Typography variant="h6" component="h3" color="text.secondary">
-            Outcomes
-          </Typography>
-          <div>
-            <Typography
-              variant="body1"
-              fontWeight="bold"
-              color="text.secondary"
-            >
-              Establish a Visual Hierarchy with a Custom Dashboard
-            </Typography>
-            <Typography variant="body1" color="text.primary">
-              The size variations establish a visual hierarchy and recallable
-              content placement. The end user can customize and prioritize
-              content to adapt to the user&apos;s operational needs. Custom
-              dashboards can be saved as templates and reused on instances of a
-              service-product.
-            </Typography>
-          </div>
-          <div>
-            <Typography
-              variant="body1"
-              fontWeight="bold"
-              color="text.secondary"
-            >
-              Consistency in User Experience
-            </Typography>
-            <Typography variant="body1" color="text.primary">
-              The 2 by 2 array grid layout promotes uniformity across different
-              service-product dashboards to help users recollect the location of
-              content in a linear order and navigate aggregated content.
-            </Typography>
-          </div>
-          <div>
-            <Typography
-              variant="body1"
-              fontWeight="bold"
-              color="text.secondary"
-            >
-              Unified Components for Product Developers
-            </Typography>
-            <Typography variant="body1" color="text.primary">
-              The structured layout will help not only the end users, but
-              service-product developers create dashboard components by
-              utilizing controlled-size variation templates provided by the
-              core-product team.
-            </Typography>
-          </div>
-          <div>
-            <Typography
-              variant="body1"
-              fontWeight="bold"
-              color="text.secondary"
-            >
-              Improve Content Readability and Operational Efficiency
-            </Typography>
-            <Typography variant="body1" color="text.primary">
-              The grid layout enhances readability, making it easier to scan the
-              aligned content.
-            </Typography>
-          </div>
-        </Stack>
-      </ReadableStack>
-
-      <Grid
-        container
-        item
-        id="final-core-dashboard"
-        direction={"row"}
-        spacing={2}
-        mt={5}
-      >
-        <Grid item xs={12} id="core-dashboard">
-          <Image
-            src={dashboardFinal}
-            width={0}
-            height={0}
-            sizes="(max-width: 700px) 100vw"
-            style={{ objectFit: "contain", width: "100%", height: "auto" }}
-            alt="original dashboard layout"
-            loading="lazy"
-          />
-          <Typography
-            variant="caption"
-            fontStyle={"italic"}
-            color="text.secondary"
-          >
-            Core Dashboard in 2 by 2 Array Grid Layout
-          </Typography>
-        </Grid>
-        <Grid item xs={12} id="core-dashboard">
-          <Image
-            src={dashboardFinalEditable}
-            width={0}
-            height={0}
-            sizes="(max-width: 700px) 100vw"
-            style={{ objectFit: "contain", width: "100%", height: "auto" }}
-            alt="original dashboard layout resize"
-            loading="lazy"
-          />
-          <Typography
-            variant="caption"
-            fontStyle={"italic"}
-            color="text.secondary"
-          >
-            Customizing Dashboard
-          </Typography>
-        </Grid>
-      </Grid>
-    </Grid>
+        <Figure
+          src={dashboardFinal}
+          alt="core dashboard in 2 by 2 array grid layout"
+          caption="Core dashboard in 2 by 2 array grid layout"
+        />
+        <Figure
+          src={dashboardFinalEditable}
+          alt="customizing the dashboard layout"
+          caption="Customizing the dashboard"
+        />
+      </Section>
+    </CaseStudyLayout>
   );
 }

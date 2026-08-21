@@ -1,21 +1,32 @@
-import { IBM_Plex_Sans, Inter } from "next/font/google";
+import { Outfit, Instrument_Serif } from "next/font/google";
 
-export const ibmPlexSans = IBM_Plex_Sans({
-  subsets: ["latin"],
-  weight: ["100", "200", "300", "400", "500", "600", "700"],
-  style: ["normal", "italic"],
-  display: "swap",
-  variable: "--font-ibm-plex-sans",
-});
-
-export const inter = Inter({
+/**
+ * Body face. Outfit ships in a single upright style — there is no italic on
+ * Google Fonts — which is fine here: the only italic on the page lives in the
+ * serif headline.
+ *
+ * To swap the body font site-wide, declare it here and point `activeFont` at
+ * it. Only fonts declared in this file get built, so keep unused ones out.
+ */
+export const outfit = Outfit({
   subsets: ["latin"],
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
-  style: ["normal", "italic"],
+  style: ["normal"],
   display: "swap",
-  variable: "--font-inter",
+  variable: "--font-outfit",
 });
 
-// Site-wide font. Swap which line is active to switch fonts everywhere.
-export const activeFont = inter;
-// export const activeFont = ibmPlexSans;
+/** Editorial display face used for headlines and section titles. */
+export const instrumentSerif = Instrument_Serif({
+  subsets: ["latin"],
+  weight: ["400"],
+  style: ["normal", "italic"],
+  display: "swap",
+  variable: "--font-instrument-serif",
+});
+
+export const activeFont = outfit;
+
+export const displayFont = instrumentSerif;
+
+export const displayFontFamily = `${instrumentSerif.style.fontFamily}, "Instrument Serif", Georgia, serif`;
