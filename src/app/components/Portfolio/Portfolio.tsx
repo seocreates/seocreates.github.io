@@ -13,7 +13,7 @@ import Typography from "@mui/material/Typography";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import dashboardFinal from "images/portfolio/dashboard-final-data.png";
 import remoteDevice from "images/portfolio/remote-device-interaction-shell.png";
-import agentBuilderCover from "images/portfolio/ai-platform/agent-builder-1.png";
+import agentCanvasCover from "images/portfolio/ai-platform/agent-canvas-input-variables.png";
 
 const StackComponent = ({ ...props }) => (
   <Stack id="readable-stack" spacing={5} direction={"column"} {...props} />
@@ -58,7 +58,7 @@ const PROJECTS: Project[] = [
     role: "Design & Development",
     summary:
       "Configuration and proof in one viewport, so every edit to an agent is testable before it reaches a customer.",
-    image: agentBuilderCover,
+    image: agentCanvasCover,
     featured: true,
   },
   {
@@ -250,7 +250,7 @@ export default function Portfolio() {
           </Typography> */}
           <Typography variant="subtitle1" color="text.secondary">
             Each one is a technical product with a real operational cost to getting the
-            interface wrong. Open any card to read the full case study.
+            interface wrong.
           </Typography>
         </Stack>
 
