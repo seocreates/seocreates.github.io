@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Moved · Seo</title>
+    <meta name="description" content="Seo's portfolio has moved to portfolio.seodesign.workers.dev." />
+    <link rel="canonical" href="https://portfolio.seodesign.workers.dev/" />
+    <!-- Without JavaScript, go straight to the new site. -->
+    <noscript><meta http-equiv="refresh" content="0; url=https://portfolio.seodesign.workers.dev/" /></noscript>
+    <meta name="theme-color" content="#F3F2ED" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0E1214" media="(prefers-color-scheme: dark)" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400;600&family=Instrument+Serif:ital@0;1&display=swap"
+    />
+    <style>
+      /* The portfolio's palette: warm paper, slate ink, periwinkle → lilac → coral. */
+      :root {
+        --paper: #f3f2ed;
+        --ink: #141d22;
+        --ink-2: #52666f;
+        --rule: rgba(20, 29, 34, 0.14);
+        --a1: #4a6dbc;
+        --a2: #8e6bd0;
+        --a3: #f2643c;
+        --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --paper: #0e1214;
+          --ink: #f3f2ed;
+          --ink-2: #9aaab3;
+          --rule: rgba(243, 242, 237, 0.16);
+          --a1: #a6c2f2;
+          --a2: #c3a5ec;
+          --a3: #f2643c;
+        }
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+      }
+      html,
+      body {
+        height: 100%;
+      }
+      body {
+        overflow: hidden;
+        background: var(--paper);
+        color: var(--ink);
+        font-family: "Atkinson Hyperlegible Next", -apple-system, system-ui, sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      svg {
+        position: fixed;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        display: block;
+      }
+      .base {
+        fill: none;
+        stroke: var(--rule);
+        stroke-width: 1.5;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+      .track {
+        fill: none;
+        stroke: url(#ink);
+        stroke-width: 2.25;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+      .head {
+        fill: var(--ink);
+      }
+      .halo {
+        fill: var(--a2);
+        opacity: 0.22;
+        transform-box: fill-box;
+        transform-origin: center;
+        animation: pulse 1.2s ease-in-out infinite;
+      }
+      @keyframes pulse {
+        50% {
+          transform: scale(1.5);
+          opacity: 0.1;
+        }
+      }
+
+      .copy {
+        position: fixed;
+        left: 16px;
+        right: 16px;
+        /* top is set in JS so the text sits just under the scribble. */
+        bottom: max(6vh, 32px);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        text-align: center;
+      }
+      h1 {
+        font-family: "Instrument Serif", Georgia, serif;
+        font-size: clamp(30px, 4.4vw, 52px);
+        font-weight: 400;
+        line-height: 1.05;
+        letter-spacing: -0.01em;
+      }
+      h1 em {
+        font-style: italic;
+      }
+      .go {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        margin-top: 4px;
+        padding: 8px 14px;
+        border: 1px solid var(--rule);
+        border-radius: 999px;
+        color: var(--ink);
+        font-family: var(--mono);
+        font-size: 13px;
+        text-decoration: none;
+        transition: border-color 160ms ease, background-color 160ms ease;
+      }
+      .go:hover {
+        border-color: var(--ink-2);
+      }
+      .go:focus-visible {
+        outline: 2px solid var(--a1);
+        outline-offset: 3px;
+      }
+      .go span {
+        transition: transform 160ms ease;
+      }
+      .go:hover span {
+        transform: translateX(3px);
+      }
+
+      .preview {
+        position: fixed;
+        top: 16px;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 6px 12px;
+        border-radius: 999px;
+        background: var(--ink);
+        color: var(--paper);
+        width: max-content;
+        max-width: calc(100% - 32px);
+        font-family: var(--mono);
+        font-size: 11px;
+        line-height: 1.4;
+        text-align: center;
+      }
+      .preview[hidden] {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <svg aria-hidden="true">
+      <defs>
+        <linearGradient id="ink" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" style="stop-color: var(--a1)" />
+          <stop offset="0.55" style="stop-color: var(--a2)" />
+          <stop offset="1" style="stop-color: var(--a3)" />
+        </linearGradient>
+      </defs>
+      <path class="base" />
+      <path class="track" />
+      <circle class="halo" r="9" />
+      <circle class="head" r="4" />
+    </svg>
+
+    <main class="copy" role="status">
+      <h1>Taking you to my <em>new</em> portfolio</h1>
+      <a class="go" href="https://portfolio.seodesign.workers.dev/">
+        portfolio.seodesign.workers.dev <span aria-hidden="true">→</span>
+      </a>
+    </main>
+
+    <p class="preview" hidden>Preview · redirect paused on localhost · add ?go to test it</p>
+
+    <script>
+      (() => {
+        const ORIGIN = "https://portfolio.seodesign.workers.dev";
+        const DURATION = 3250; // ms for the track to travel the whole line
+        const HOLD = 250; // pause at the end before leaving
+
+        // Keep the path, so old deep links land on the same page.
+        const path = location.pathname.replace(/index\.html$/, "");
+        const target = ORIGIN + path + location.search.replace(/[?&]go\b/, "") + location.hash;
+        document.querySelector(".go").href = target;
+
+        const host = location.hostname;
+        const local = host === "localhost" || host === "127.0.0.1" || host === "[::1]" || host.endsWith(".localhost");
+        const preview = local && !/[?&]go\b/.test(location.search);
+        document.querySelector(".preview").hidden = !preview;
+
+        const leave = () => location.replace(target);
+        const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+        // The scribble, traced from the sketch (in its own pixel space). The
+        // first and last points sit on the straight line at y = 437.
+        // prettier-ignore
+        const P = [
+          [590,437],[700,425],[790,395],[850,340],[870,280],[840,210],[770,187],[700,195],[660,240],
+          [655,290],[668,325],[700,350],[735,350],[760,320],[762,290],[740,270],[705,268],[670,290],
+          [645,330],[632,390],[632,440],[648,500],[655,545],[632,585],[590,597],[545,585],[500,535],
+          [476,450],[476,360],[505,280],[560,200],[640,135],[720,103],[800,97],[880,115],[950,170],
+          [990,250],[1000,330],[985,420],[945,500],[890,575],[820,640],[740,680],[650,692],[580,682],
+          [535,645],[528,590],[550,540],[610,492],[700,467],[790,465],[870,485],[930,530],[955,600],
+          [955,670],[930,730],[880,770],[830,778],[785,755],[758,700],[745,610],[760,520],[810,445],
+          [880,385],[960,350],[1040,343],[1110,365],[1155,410],[1170,480],[1150,560],[1100,620],
+          [1040,655],[985,665],[945,650],[925,610],[930,560],[965,510],[1030,470],[1100,447],
+          [1160,438],[1200,437],
+        ];
+        const BOX = { x0: 470, x1: 1200, y0: 97, y1: 778, line: 437 };
+
+        const svg = document.querySelector("svg");
+        const base = document.querySelector(".base");
+        const track = document.querySelector(".track");
+        const head = document.querySelector(".head");
+        const halo = document.querySelector(".halo");
+        const grad = document.querySelector("#ink");
+        let length = 0;
+
+        // Scale the scribble uniformly (its ratio never changes); the straight
+        // line runs edge to edge through it.
+        function build() {
+          const W = innerWidth;
+          const H = innerHeight;
+          svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
+          grad.setAttribute("x2", W);
+
+          // Phones get a wider share of the screen.
+          const share = W < 600 ? 0.22 : 0.18;
+          const s = Math.min((W * share) / (BOX.x1 - BOX.x0), (H * 0.125) / (BOX.y1 - BOX.y0));
+          const cx = W / 2;
+          const cy = H * 0.4;
+          const midX = (BOX.x0 + BOX.x1) / 2;
+          const pts = P.map(([x, y]) => [cx + (x - midX) * s, cy + (y - BOX.line) * s]);
+
+          // Phantom points on the line give the curve horizontal tangents
+          // where it leaves and rejoins the straight line.
+          const first = pts[0];
+          const last = pts[pts.length - 1];
+          const all = [[first[0] - 60 * s, cy], ...pts, [last[0] + 60 * s, cy]];
+
+          const f = (n) => n.toFixed(1);
+          let d = `M -8 ${f(cy)} L ${f(first[0])} ${f(cy)}`;
+          for (let i = 1; i < all.length - 2; i++) {
+            const [p0, p1, p2, p3] = [all[i - 1], all[i], all[i + 1], all[i + 2]];
+            const c1 = [p1[0] + (p2[0] - p0[0]) / 6, p1[1] + (p2[1] - p0[1]) / 6];
+            const c2 = [p2[0] - (p3[0] - p1[0]) / 6, p2[1] - (p3[1] - p1[1]) / 6];
+            d += ` C ${f(c1[0])} ${f(c1[1])} ${f(c2[0])} ${f(c2[1])} ${f(p2[0])} ${f(p2[1])}`;
+          }
+          d += ` L ${W + 8} ${f(cy)}`;
+
+          // Sit the text just under the scribble, without running off short screens.
+          const copy = document.querySelector(".copy");
+          const below = cy + (BOX.y1 - BOX.line) * s + Math.max(28, H * 0.05);
+          const top = Math.min(below, H - copy.offsetHeight - 24);
+          copy.style.top = `${Math.round(top)}px`;
+          copy.style.bottom = "auto";
+
+          base.setAttribute("d", d);
+          track.setAttribute("d", d);
+          length = track.getTotalLength();
+          track.style.strokeDasharray = `${length} ${length}`;
+        }
+
+        // A gentle ease in and out, so the middle never rushes.
+        const ease = (t) => (1 - Math.cos(Math.PI * t)) / 2;
+
+        function draw(p) {
+          track.style.strokeDashoffset = String(length * (1 - p));
+          const pt = track.getPointAtLength(length * p);
+          for (const c of [head, halo]) {
+            c.setAttribute("cx", pt.x);
+            c.setAttribute("cy", pt.y);
+          }
+        }
+
+        build();
+        addEventListener("resize", () => {
+          build();
+          draw(progress);
+        });
+
+        let progress = 0;
+        if (reduced) {
+          draw(1);
+          if (!preview) setTimeout(leave, 600);
+          return;
+        }
+
+        let start = null;
+        function frame(now) {
+          if (start === null) start = now;
+          const t = Math.min(1, (now - start) / DURATION);
+          progress = ease(t);
+          draw(progress);
+          if (t < 1) return requestAnimationFrame(frame);
+          if (preview) {
+            // On localhost, replay instead of leaving.
+            setTimeout(() => {
+              start = null;
+              requestAnimationFrame(frame);
+            }, 900);
+          } else {
+            setTimeout(leave, HOLD);
+          }
+        }
+        requestAnimationFrame(frame);
+
+        // Background tabs pause animation frames; don't hold visitors up.
+        if (!preview) setTimeout(leave, DURATION + HOLD + 1500);
+      })();
+    </script>
+  </body>
+</html>
