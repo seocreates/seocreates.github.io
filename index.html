@@ -14,7 +14,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400;600&family=Instrument+Serif:ital@0;1&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Archivo:wght@500&family=Familjen+Grotesk:wght@500&display=swap"
     />
     <style>
       /* The portfolio's palette: warm paper, slate ink, periwinkle → lilac → coral. */
@@ -52,7 +52,7 @@
         overflow: hidden;
         background: var(--paper);
         color: var(--ink);
-        font-family: "Atkinson Hyperlegible Next", -apple-system, system-ui, sans-serif;
+        font-family: "Archivo", -apple-system, system-ui, sans-serif;
         -webkit-font-smoothing: antialiased;
       }
 
@@ -106,15 +106,13 @@
         gap: 10px;
         text-align: center;
       }
+      /* The portfolio's display grotesk, upright, set like its h3. */
       h1 {
-        font-family: "Instrument Serif", Georgia, serif;
+        font-family: "Familjen Grotesk", -apple-system, system-ui, sans-serif;
         font-size: clamp(30px, 4.4vw, 52px);
-        font-weight: 400;
-        line-height: 1.05;
-        letter-spacing: -0.01em;
-      }
-      h1 em {
-        font-style: italic;
+        font-weight: 500;
+        line-height: 1.08;
+        letter-spacing: -0.025em;
       }
       .go {
         display: inline-flex;
@@ -125,8 +123,8 @@
         border: 1px solid var(--rule);
         border-radius: 999px;
         color: var(--ink);
-        font-family: var(--mono);
-        font-size: 13px;
+        font-size: 14px;
+        font-weight: 500;
         text-decoration: none;
         transition: border-color 160ms ease, background-color 160ms ease;
       }
@@ -181,7 +179,7 @@
     </svg>
 
     <main class="copy" role="status">
-      <h1>Taking you to my <em>new</em> portfolio</h1>
+      <h1>Taking you to my new portfolio</h1>
       <a class="go" href="https://seodesign.pages.dev/">
         seodesign.pages.dev <span aria-hidden="true">→</span>
       </a>
