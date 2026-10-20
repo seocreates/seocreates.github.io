@@ -1,3 +1,3 @@
 # seocreates.github.io
 
-This site has moved to **https://portfolio.seodesign.workers.dev**.
+This site has moved to **https://seodesign.pages.dev**.
