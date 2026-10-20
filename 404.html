@@ -4,10 +4,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Moved · Seo</title>
-    <meta name="description" content="Seo's portfolio has moved to portfolio.seodesign.workers.dev." />
-    <link rel="canonical" href="https://portfolio.seodesign.workers.dev/" />
+    <meta name="description" content="Seo's portfolio has moved to seodesign.pages.dev." />
+    <link rel="canonical" href="https://seodesign.pages.dev/" />
     <!-- Without JavaScript, go straight to the new site. -->
-    <noscript><meta http-equiv="refresh" content="0; url=https://portfolio.seodesign.workers.dev/" /></noscript>
+    <noscript><meta http-equiv="refresh" content="0; url=https://seodesign.pages.dev/" /></noscript>
     <meta name="theme-color" content="#F3F2ED" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#0E1214" media="(prefers-color-scheme: dark)" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -182,8 +182,8 @@
 
     <main class="copy" role="status">
       <h1>Taking you to my <em>new</em> portfolio</h1>
-      <a class="go" href="https://portfolio.seodesign.workers.dev/">
-        portfolio.seodesign.workers.dev <span aria-hidden="true">→</span>
+      <a class="go" href="https://seodesign.pages.dev/">
+        seodesign.pages.dev <span aria-hidden="true">→</span>
       </a>
     </main>
 
@@ -191,9 +191,8 @@
 
     <script>
       (() => {
-        const ORIGIN = "https://portfolio.seodesign.workers.dev";
-        const DURATION = 3250; // ms for the track to travel the whole line
-        const HOLD = 250; // pause at the end before leaving
+        const ORIGIN = "https://seodesign.pages.dev";
+        const DURATION = 3000; // ms for the track to travel the whole line
 
         // Keep the path, so old deep links land on the same page.
         const path = location.pathname.replace(/index\.html$/, "");
@@ -317,13 +316,13 @@
               requestAnimationFrame(frame);
             }, 900);
           } else {
-            setTimeout(leave, HOLD);
+            leave();
           }
         }
         requestAnimationFrame(frame);
 
         // Background tabs pause animation frames; don't hold visitors up.
-        if (!preview) setTimeout(leave, DURATION + HOLD + 1500);
+        if (!preview) setTimeout(leave, DURATION + 1500);
       })();
     </script>
   </body>
